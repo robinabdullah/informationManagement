@@ -10,7 +10,7 @@
     <form id="form1" runat="server">
     <div>
     <table>
-        <tr> <td>  <asp:Label ID="username" runat="server" ></asp:Label>  </td>
+        <tr> <td>  <asp:Label ID="username" runat="server" Font-Bold="True" Font-Size="Larger" ></asp:Label>  </td>
             <td>
                 <asp:Button ID="logout" runat="server" Text="Log Out" OnClick="logout_Click" />
 
