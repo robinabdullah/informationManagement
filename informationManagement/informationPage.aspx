@@ -196,7 +196,7 @@
        
         
     </table>
-                <asp:Label ID="msg" runat="server" Text=""></asp:Label><br><br>
+                <asp:Label ID="msg" runat="server" Text=""></asp:Label><br>
                  <a href="searchInformation.aspx">Search Information</a>
 
     </div>
