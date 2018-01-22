@@ -48,6 +48,20 @@
                     </td>
 
                 </tr>
+                  <tr>
+            <td>Title</td>
+             
+           <td>          
+
+               <asp:DropDownList ID="title" runat="server">
+                   <asp:ListItem Value="0">Select Title</asp:ListItem>
+                   <asp:ListItem Value="1">Teacher</asp:ListItem>
+                   <asp:ListItem Value="2">Student</asp:ListItem>
+               </asp:DropDownList>
+
+           </td>
+
+        </tr>
                 <tr>
                     <td></td>
                     <td>

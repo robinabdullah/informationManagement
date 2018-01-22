@@ -26,15 +26,31 @@ namespace informationManagement
             list.DataSource = null;
           list.DataBind();
             String search;
-            String connstring = @"server=DESKTOP-JAP561I\SQLEXPRESS;database=attendenceManagement;integrated security=true";
+          
 
 
-            if(clas.SelectedIndex != 0 && shift.SelectedIndex != 0)
+            if(clas.SelectedIndex != 0 && shift.SelectedIndex != 0 && title.SelectedIndex != 0)
             {
-                 search = String.Format("select * from Information where Class='{0}' and Shift='{1}'", clas.SelectedItem.Text, shift.SelectedItem.Text);
+                 search = String.Format("select * from Information where Class='{0}' and Shift='{1}' and Title='{2}'", clas.SelectedItem.Text, shift.SelectedItem.Text, title.SelectedItem.Text);
                 
             }
-           else if (clas.SelectedIndex != 0)
+          else  if (clas.SelectedIndex != 0 && shift.SelectedIndex != 0)
+            {
+                search = String.Format("select * from Information where Class='{0}' and Shift='{1}'", clas.SelectedItem.Text, shift.SelectedItem.Text);
+
+            }
+         else   if (clas.SelectedIndex != 0  && title.SelectedIndex != 0)
+            {
+                search = String.Format("select * from Information where Class='{0}' and Title='{1}'", clas.SelectedItem.Text,title.SelectedItem.Text);
+
+            }
+            else if (shift.SelectedIndex != 0 && title.SelectedIndex != 0)
+            {
+                search = String.Format("select * from Information where Shift='{0}' and Title='{1}'", shift.SelectedItem.Text, title.SelectedItem.Text);
+
+            }
+
+            else if (clas.SelectedIndex != 0)
             {
                  search = String.Format("select * from Information where Class='{0}'", clas.SelectedItem.Text);
                 
@@ -46,14 +62,18 @@ namespace informationManagement
                
             }
 
-           
+            else if (title.SelectedIndex != 0)
+            {
+                search = String.Format("select * from Information where Title='{0}'", title.SelectedItem.Text);
+
+            }
             else
             {
                  search = "select * from Information ";
                
             }
 
-            SqlConnection conn = new SqlConnection(connstring);
+            SqlConnection conn = new SqlConnection(Information.connectionstring);
             SqlCommand cmd = new SqlCommand(search, conn);
             conn.Open();
 

@@ -72,10 +72,10 @@ namespace informationManagement
             }
             else
             {
-                String connstring = @"server=DESKTOP-JAP561I\SQLEXPRESS;database=attendenceManagement;integrated security=true";
+               
                 String insert = String.Format("insert into Information(Class,Name,Gender,Roll,Shift,Nationality,Office_Phone,Title,DateOfBirth,DateOfEmployment,Mobile_Number,Home_address,Created_By) values('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}',{12})", clas.SelectedItem.Text, name.Text, gender.SelectedItem.Text, roll.Text, shift.SelectedItem.Text, national.Text, officephone.Text, title.SelectedItem.Text, dob.Text, doe.Text, mobile.Text, homeaddress.Text,Session["user_id"].ToString());
 
-                SqlConnection conn = new SqlConnection(connstring);
+                SqlConnection conn = new SqlConnection(Information.connectionstring);
                 SqlCommand cmd = new SqlCommand(insert, conn);
                 conn.Open();
 
