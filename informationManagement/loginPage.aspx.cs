@@ -27,7 +27,7 @@ namespace informationManagement
             }
             else {
                 String connstring = @"server=DESKTOP-JAP561I\SQLEXPRESS;database=attendenceManagement;integrated security=true";
-                String search = String.Format("select Id, Name,Password from Login where Name='{0}' and Password='{1}'", name.Text, password.Text);
+                String search = String.Format("select Id, Name,Password from newLogin where Name='{0}' and Password='{1}'", name.Text, password.Text);
 
 
                 SqlConnection conn = new SqlConnection(connstring);
