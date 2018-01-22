@@ -67,7 +67,7 @@
                     <td>
 
                         <asp:Button ID="Button1" runat="server" Text="Search" OnClick="searchButton1_Click" />
-
+                        <a href="informationPage.aspx">Back</a>
                     </td>
                    
                 </tr>
