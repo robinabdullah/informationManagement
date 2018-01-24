@@ -71,6 +71,13 @@
                     </td>
                    
                 </tr>
+                  <tr>
+                       <td>Mobile Number</td>
+                      <td>
+                        <asp:TextBox ID="mobile" runat="server"></asp:TextBox>
+
+                     </td>
+                 </tr>
                 <tr>
                     <td>
                         <asp:Label ID="msg" runat="server" Text=""></asp:Label>
