@@ -22,15 +22,20 @@ namespace informationManagement
 
         protected void SaveButton1_Click(object sender, EventArgs e)
         {
-            if (clas.SelectedItem.Text == "Select Class")
-            {
-                msg.Text = "please enter valid class";
-            }
-            else if (name.Text == "")
+            if (name.Text == "")
             {
                 msg.Text = "please enter valid name";
             }
-          else  if (gender.SelectedItem.Text == "Select Gender")
+            else if (clas.SelectedItem.Text == "Select Class")
+            {
+                msg.Text = "please enter valid class";
+            }
+            else if (section.SelectedItem.Text == "Select Section")
+            {
+                msg.Text = "please enter valid section";
+            }
+
+            else if (gender.SelectedItem.Text == "Select Gender")
             {
                 msg.Text = "please enter valid gender";
             }
@@ -72,8 +77,9 @@ namespace informationManagement
             }
             else
             {
-               
-                String insert = String.Format("insert into Information(Class,Name,Gender,Roll,Shift,Nationality,Office_Phone,Title,DateOfBirth,DateOfEmployment,Mobile_Number,Home_address,Created_By) values('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}',{12})", clas.SelectedItem.Text, name.Text, gender.SelectedItem.Text, roll.Text, shift.SelectedItem.Text, national.Text, officephone.Text, title.SelectedItem.Text, dob.Text, doe.Text, mobile.Text, homeaddress.Text,Session["user_id"].ToString());
+
+
+                String insert = String.Format("insert into Information(Name,Class,Section,Department,Gender,Roll,Shift,Nationality,Office_Phone,Title,DateOfBirth,DateOfEmployment,Mobile_Number,Home_address,Created_By) values('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}',{14})", name.Text, clas.SelectedItem.Text, section.SelectedItem.Text, department.SelectedItem.Text, gender.SelectedItem.Text, roll.Text, shift.SelectedItem.Text, national.Text, officephone.Text, title.SelectedItem.Text, dob.Text, doe.Text, mobile.Text, homeaddress.Text, Session["user_id"].ToString());
 
                 SqlConnection conn = new SqlConnection(Information.connectionstring);
                 SqlCommand cmd = new SqlCommand(insert, conn);
@@ -122,8 +128,10 @@ namespace informationManagement
         }
         private void Clearall()
         {
-            clas.SelectedIndex = 0;
             name.Text = "";
+            clas.SelectedIndex = 0;
+            section.SelectedIndex = 0;
+            department.SelectedIndex = 0;
             gender.SelectedIndex = 0;
             roll.Text = "";
             shift.SelectedIndex = 0;

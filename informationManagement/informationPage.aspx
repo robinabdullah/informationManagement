@@ -18,11 +18,22 @@
         </tr>
 
         <tr><td> <h2>Information Page</h2></td></tr>
-         <tr>
-            <td>Class </td>
+          <tr>
+            <td>Name<span style="color:red">*</span></td>
+             
+           <td>           
+               
+
+               <asp:TextBox ID="name" runat="server"></asp:TextBox>
+
+           </td>
+
+        </tr>
+          <tr>
+            <td>Class<span style="color:red">*</span> </td>
            <td>
                            
-                <span style="color:red">*</span>
+              
                <asp:DropDownList ID="clas" runat="server">
                    <asp:ListItem Value="0">Select Class</asp:ListItem>
                    <asp:ListItem Value="1">KG</asp:ListItem>
@@ -42,21 +53,45 @@
 
         </tr>
          <tr>
-            <td>Name</td>
+            <td>Section</td>
              
-           <td>           
-                 <span style="color:red">*</span>
+           <td>
 
-               <asp:TextBox ID="name" runat="server"></asp:TextBox>
+               <asp:DropDownList ID="section" runat="server">
+                   <asp:ListItem Value="0">Select Section</asp:ListItem>
+                   <asp:ListItem Value="1">A</asp:ListItem>
+                   <asp:ListItem Value="2">B</asp:ListItem>
+                   <asp:ListItem Value="3">C</asp:ListItem>
+                   <asp:ListItem Value="4">D</asp:ListItem>
+               </asp:DropDownList>
+             
 
            </td>
 
         </tr>
-         <tr>
-            <td>Gender</td>
+          <tr>
+            <td>Department <span style="color:red">*</span></td>
              
            <td>
-                            <span style="color:red">*</span>
+
+               <asp:DropDownList ID="department" runat="server">
+                   <asp:ListItem Value="0">Select Department</asp:ListItem>
+                   <asp:ListItem Value="1">Science</asp:ListItem>
+                   <asp:ListItem Value="2">Ars</asp:ListItem>
+                   <asp:ListItem Value="3">commerce</asp:ListItem>
+               
+               </asp:DropDownList>
+             
+
+           </td>
+
+        </tr>
+       
+         <tr>
+            <td>Gender   <span style="color:red">*</span></td>
+             
+           <td>
+                         
 
                <asp:DropDownList ID="gender" runat="server">
                    <asp:ListItem Value="0">Select Gender</asp:ListItem>
@@ -67,10 +102,10 @@
 
         </tr>
          <tr>
-            <td>Roll</td>
+            <td>Roll  <span style="color:red">*</span></td>
              
            <td>
-                            <span style="color:red">*</span>
+                          
 
                <asp:TextBox ID="roll" runat="server"></asp:TextBox>
 
@@ -78,10 +113,10 @@
 
         </tr>
          <tr>
-            <td>Shift</td>
+            <td>Shift   <span style="color:red">*</span></td>
              
            <td>
-                            <span style="color:red">*</span>
+                         
 
                <asp:DropDownList ID="shift" runat="server">
                    <asp:ListItem Value="0">Select Shift</asp:ListItem>
@@ -93,19 +128,18 @@
 
         </tr>
          <tr>
-            <td>Nationality</td>
+            <td>Nationality   <span style="color:red">*</span></td>
              
            <td>
-                            <span style="color:red">*</span>
-
+                        
                <asp:TextBox ID="national" runat="server" Text="Bangladeshi"></asp:TextBox>
            </td>
 
         </tr>
           <tr>
-            <td>Office Phone</td>
+            <td>Office Phone    <span style="color:red">*</span></td>
              
-           <td>             <span style="color:red">*</span>
+           <td>         
 
                <asp:TextBox ID="officephone" runat="server"></asp:TextBox>
 
@@ -113,23 +147,24 @@
 
         </tr>
           <tr>
-            <td>Title</td>
+            <td>Title    <span style="color:red">*</span></td>
              
-           <td>             <span style="color:red">*</span>
+           <td>         
 
                <asp:DropDownList ID="title" runat="server">
                    <asp:ListItem Value="0">Select Title</asp:ListItem>
                    <asp:ListItem Value="1">Teacher</asp:ListItem>
                    <asp:ListItem Value="2">Student</asp:ListItem>
+                   <asp:ListItem Value="3">Committee</asp:ListItem>
                </asp:DropDownList>
 
            </td>
 
         </tr>
           <tr>
-            <td>Date Of Birth</td>
+            <td>Date Of Birth    <span style="color:red">*</span></td>
              
-           <td>             <span style="color:red">*</span>
+           <td>          
 
                <asp:TextBox ID="dob" runat="server"></asp:TextBox>
 
@@ -147,8 +182,8 @@
 
         </tr>
           <tr>
-            <td>Date Of Employment</td>
-             <td>             <span style="color:red">*</span>
+            <td>Date Of Employment  <span style="color:red">*</span></td>
+             <td>           
 
                  <asp:TextBox ID="doe" runat="server"></asp:TextBox>
            

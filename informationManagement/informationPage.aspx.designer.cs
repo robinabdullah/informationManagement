@@ -40,6 +40,15 @@ namespace informationManagement {
         protected global::System.Web.UI.WebControls.Button logout;
         
         /// <summary>
+        /// name control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox name;
+        
+        /// <summary>
         /// clas control.
         /// </summary>
         /// <remarks>
@@ -49,13 +58,22 @@ namespace informationManagement {
         protected global::System.Web.UI.WebControls.DropDownList clas;
         
         /// <summary>
-        /// name control.
+        /// section control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox name;
+        protected global::System.Web.UI.WebControls.DropDownList section;
+        
+        /// <summary>
+        /// department control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList department;
         
         /// <summary>
         /// gender control.
