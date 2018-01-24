@@ -78,17 +78,17 @@ namespace informationManagement
             else
             {
 
-
-                String insert = String.Format("insert into Information(Name,Class,Section,Department,Gender,Roll,Shift,Nationality,Office_Phone,Title,DateOfBirth,DateOfEmployment,Mobile_Number,Home_address,Created_By) values('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}',{14})", name.Text, clas.SelectedItem.Text, section.SelectedItem.Text, department.SelectedItem.Text, gender.SelectedItem.Text, roll.Text, shift.SelectedItem.Text, national.Text, officephone.Text, title.SelectedItem.Text, dob.Text, doe.Text, mobile.Text, homeaddress.Text, Session["user_id"].ToString());
+                string dept = department.SelectedIndex == 0 ? "" : department.SelectedItem.Text;
+                String insert = String.Format("insert into Information(Name,Class,Section,Department,Gender,Roll,Shift,Nationality,Office_Phone,Title,DateOfBirth,DateOfEmployment,Mobile_Number,Home_address,Created_By) OUTPUT INSERTED.ID values('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}',{14})", name.Text, clas.SelectedItem.Text, section.SelectedItem.Text, dept, gender.SelectedItem.Text, roll.Text, shift.SelectedItem.Text, national.Text, officephone.Text, title.SelectedItem.Text, dob.Text, doe.Text, mobile.Text, homeaddress.Text, Session["user_id"].ToString());
 
                 SqlConnection conn = new SqlConnection(Information.connectionstring);
                 SqlCommand cmd = new SqlCommand(insert, conn);
                 conn.Open();
 
-                int a = cmd.ExecuteNonQuery();
+                int a = (int)cmd.ExecuteScalar();
                 if (a > 0)
                 {
-                    msg.Text = "successfully inserted";
+                    msg.Text = "successfully inserted. ID: " + a;
                 }
                 Clearall();
 
@@ -153,6 +153,21 @@ namespace informationManagement
         {
             Session.Clear();
             Response.Redirect("LoginPage.aspx");
+        }
+
+        protected void clas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (clas.SelectedIndex == 2 || clas.SelectedIndex == 3)
+            {
+                department.Visible = true;
+                departmentLabel.Visible = true;
+            }
+            else
+            {
+                
+                department.Visible = false;
+                departmentLabel.Visible = false;
+            }
         }
     }
 }

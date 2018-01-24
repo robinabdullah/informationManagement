@@ -57,11 +57,19 @@
                    <asp:ListItem Value="0">Select Title</asp:ListItem>
                    <asp:ListItem Value="1">Teacher</asp:ListItem>
                    <asp:ListItem Value="2">Student</asp:ListItem>
+                   <asp:ListItem Value="3">Committee</asp:ListItem>
                </asp:DropDownList>
 
            </td>
 
         </tr>
+                <tr>
+                       <td>Mobile Number</td>
+                      <td>
+                        <asp:TextBox ID="mobile" runat="server"></asp:TextBox>
+
+                     </td>
+                 </tr>
                 <tr>
                     <td></td>
                     <td>
@@ -71,13 +79,7 @@
                     </td>
                    
                 </tr>
-                  <tr>
-                       <td>Mobile Number</td>
-                      <td>
-                        <asp:TextBox ID="mobile" runat="server"></asp:TextBox>
-
-                     </td>
-                 </tr>
+                  
                 <tr>
                     <td>
                         <asp:Label ID="msg" runat="server" Text=""></asp:Label>

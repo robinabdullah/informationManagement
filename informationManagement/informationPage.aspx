@@ -5,6 +5,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <style type="text/css">
+        .auto-style1 {
+            height: 51px;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -34,7 +39,7 @@
            <td>
                            
               
-               <asp:DropDownList ID="clas" runat="server">
+               <asp:DropDownList ID="clas" runat="server" AutoPostBack="True" OnSelectedIndexChanged="clas_SelectedIndexChanged">
                    <asp:ListItem Value="0">Select Class</asp:ListItem>
                    <asp:ListItem Value="1">KG</asp:ListItem>
                    <asp:ListItem Value="2">Class 10</asp:ListItem>
@@ -70,7 +75,7 @@
 
         </tr>
           <tr>
-            <td>Department <span style="color:red">*</span></td>
+            <td> <asp:Label Text="Department" ID="departmentLabel" runat="server" />  </td>
              
            <td>
 
@@ -205,10 +210,10 @@
             </td>
         </tr>
          <tr>
-            <td>Home address</td>
-            <td>
+            <td class="auto-style1">Home address</td>
+            <td class="auto-style1">
 
-                <asp:TextBox ID="homeaddress" runat="server"></asp:TextBox>
+                <asp:TextBox ID="homeaddress" runat="server" Rows="0" TextMode="MultiLine" Height="84px" Width="163px"></asp:TextBox>
 
             </td>
         </tr>
@@ -231,7 +236,7 @@
        
         
     </table>
-                <asp:Label ID="msg" runat="server" Text=""></asp:Label><br>
+                <asp:Label ForeColor="red" ID="msg" runat="server" Text=""></asp:Label><br>
                  <a href="searchInformation.aspx">Search Information</a>
 
     </div>

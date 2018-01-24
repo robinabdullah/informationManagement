@@ -10,7 +10,9 @@
     <form id="form1" runat="server">
     <div>
         <h2>Entry Count Per User</h2>
-                    <asp:GridView ID="count" runat="server"></asp:GridView>
+        <asp:GridView ID="count" runat="server"></asp:GridView>
+        <h2>Entry Count Per Class</h2>
+        <asp:GridView ID="classWiseCount" runat="server"></asp:GridView>
         <br>
         <a href="informationPage.aspx">Back To Infomation Page</a>
     </div>
