@@ -67,6 +67,15 @@ namespace informationManagement {
         protected global::System.Web.UI.WebControls.DropDownList section;
         
         /// <summary>
+        /// departmentLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label departmentLabel;
+        
+        /// <summary>
         /// department control.
         /// </summary>
         /// <remarks>

@@ -29,6 +29,15 @@ namespace informationManagement
 
                     count.DataSource = cmd.ExecuteReader();
                     count.DataBind();
+
+                    insert = "select class,count(Id) AS Entry from information group by class";
+
+                    conn = new SqlConnection(Information.connectionstring);
+                    cmd = new SqlCommand(insert, conn);
+                    conn.Open();
+
+                    classWiseCount.DataSource = cmd.ExecuteReader();
+                    classWiseCount.DataBind();
                 }
                 else
                 {
