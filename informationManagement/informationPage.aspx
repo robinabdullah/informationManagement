@@ -84,7 +84,7 @@
                    <asp:ListItem Value="0">Select Department</asp:ListItem>
                    <asp:ListItem Value="1">Science</asp:ListItem>
                    <asp:ListItem Value="2">Arts</asp:ListItem>
-                   <asp:ListItem Value="3">commerce</asp:ListItem>
+                   <asp:ListItem Value="3">Commerce</asp:ListItem>
                
                </asp:DropDownList>
              
