@@ -22,6 +22,15 @@ namespace informationManagement {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
+        /// id control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField id;
+        
+        /// <summary>
         /// username control.
         /// </summary>
         /// <remarks>
@@ -211,31 +220,31 @@ namespace informationManagement {
         protected global::System.Web.UI.WebControls.TextBox homeaddress;
         
         /// <summary>
-        /// Button1 control.
+        /// save control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button save;
         
         /// <summary>
-        /// Button2 control.
+        /// update control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
+        protected global::System.Web.UI.WebControls.Button update;
         
         /// <summary>
-        /// Button3 control.
+        /// reset control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button3;
+        protected global::System.Web.UI.WebControls.Button reset;
         
         /// <summary>
         /// msg control.

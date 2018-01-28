@@ -10,7 +10,7 @@
 namespace informationManagement {
     
     
-    public partial class searchInformation {
+    public partial class searchInformationNew {
         
         /// <summary>
         /// form1 control.

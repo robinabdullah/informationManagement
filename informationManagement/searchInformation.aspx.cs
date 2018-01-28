@@ -130,5 +130,30 @@ namespace informationManagement
             Session.Clear();
             Response.Redirect("LoginPage.aspx");
         }
+
+        protected void reset_Click(object sender, EventArgs e)
+        {
+            
+           
+            clas.SelectedIndex = 0;
+           
+            shift.SelectedIndex = 0;
+           
+            title.SelectedIndex = 0;
+           
+            mobile.Text = "";
+            
+        
+    }
+
+        protected void list_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            ;
+        }
+
+        protected void list_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            string test = e.Keys["ID"].ToString();
+        }
     }
 }

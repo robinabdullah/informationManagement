@@ -14,6 +14,7 @@
 <body>
     <form id="form1" runat="server">
     <div>
+        <asp:HiddenField ID="id" runat="server" />
     <table>
         <tr> <td>  <asp:Label ID="username" runat="server" Font-Bold="True" Font-Size="Larger" ></asp:Label>  </td>
             <td>
@@ -82,7 +83,7 @@
                <asp:DropDownList ID="department" runat="server">
                    <asp:ListItem Value="0">Select Department</asp:ListItem>
                    <asp:ListItem Value="1">Science</asp:ListItem>
-                   <asp:ListItem Value="2">Ars</asp:ListItem>
+                   <asp:ListItem Value="2">Arts</asp:ListItem>
                    <asp:ListItem Value="3">commerce</asp:ListItem>
                
                </asp:DropDownList>
@@ -175,7 +176,7 @@
 
           
               
-                  <asp:ImageButton ID="ImageButton1" runat="server" Height="30px" ImageUrl="~/Calendar.png" Width="16px" OnClick="ImageButton1_Click" />
+                  <asp:ImageButton ID="ImageButton1" runat="server" Height="30px" ImageUrl="~/Calendar.png" Width="30px" OnClick="ImageButton1_Click" />
 
                </td>
               </tr>
@@ -192,7 +193,7 @@
 
                  <asp:TextBox ID="doe" runat="server"></asp:TextBox>
            
-               <asp:ImageButton ID="ImageButton2" runat="server" Height="30px" ImageUrl="~/Calendar.png" Width="16px" OnClick="ImageButton2_Click" />
+               <asp:ImageButton ID="ImageButton2" runat="server" Height="30px" ImageUrl="~/Calendar.png" Width="29px" OnClick="ImageButton2_Click" />
 
            </td>
                </tr>
@@ -220,9 +221,9 @@
           <tr>
              <td></td>
              <td>
-                 <asp:Button ID="Button1" runat="server" Text="Save" OnClick="SaveButton1_Click" />
-                 <asp:Button ID="Button2" runat="server" Text="Update" Visible="false"/>
-                 <asp:Button ID="Button3" runat="server" Text="Reset" OnClick="resetButton3_Click" />
+                 <asp:Button ID="save" runat="server" Text="Save" OnClick="SaveButton1_Click" />
+                 <asp:Button ID="update" runat="server" Text="Update" Visible="false" OnClick="update_Click"/>
+                 <asp:Button ID="reset" runat="server" Text="Reset" OnClick="resetButton3_Click" />
                  <%--<asp:Button ID="Button4" runat="server" Text="Search" OnClick="searchButton4_Click" />--%>
 
             </td>
