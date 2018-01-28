@@ -143,9 +143,11 @@ namespace informationManagement
                 if (a > 0)
                 {
                     msg.Text = "successfully inserted. ID: " + a;
+                    Clearall();
                 }
-                Clearall();
 
+                else
+                    msg.Text = "save failed ";
 
             }
         }
@@ -189,7 +191,7 @@ namespace informationManagement
             gender.SelectedIndex = 0;
             roll.Text = "";
             shift.SelectedIndex = 0;
-            national.Text = "";
+            national.Text = "Bangladeshi";
             officephone.Text = "";
             title.SelectedIndex = 0;
             dob.Text = "";
@@ -235,12 +237,16 @@ namespace informationManagement
             conn.Open();
 
             int a = cmd.ExecuteNonQuery();
-            if(a>0)
+            if (a > 0)
             {
                 msg.Text = "successfully updated";
+                Clearall();
             }
 
-
+            else
+            {
+                msg.Text = "updated failed";
+            }
 
 
         }
