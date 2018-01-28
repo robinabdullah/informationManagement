@@ -38,6 +38,13 @@ namespace informationManagement
 
                     classWiseCount.DataSource = cmd.ExecuteReader();
                     classWiseCount.DataBind();
+                    insert = "select Title,count(Title) as nbrOfEntry from Information group by Title";
+                    conn = new SqlConnection(Information.connectionstring);
+                    cmd = new SqlCommand(insert, conn);
+                    conn.Open();
+
+                   titleWiseCount.DataSource = cmd.ExecuteReader();
+                    titleWiseCount.DataBind();
                 }
                 else
                 {

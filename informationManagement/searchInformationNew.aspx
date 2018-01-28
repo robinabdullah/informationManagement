@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="searchInformation.aspx.cs" Inherits="informationManagement.searchInformation" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="searchInformationNew.aspx.cs" Inherits="informationManagement.searchInformationNew" %>
 
 <!DOCTYPE html>
 
@@ -91,12 +91,7 @@
                 </tr>
 
             </table>
-            <asp:GridView ID="list" runat="server" OnRowEditing="list_RowEditing">
-                <Columns>
-                    <asp:HyperLinkField DataNavigateUrlFields="ID" DataNavigateUrlFormatString="/informationPage.aspx?id={0}" DataTextField="ID" DataTextFormatString="{0}" />
-                </Columns>
-               
-            </asp:GridView>
+            <asp:GridView ID="list" runat="server"></asp:GridView>
         </div>
     </form>
 </body>
