@@ -290,7 +290,7 @@ namespace informationManagement
             else
             {
                 string dept = (department.Visible == false) ? "" : department.SelectedItem.Text;
-                string date = DateTime.Now.ToString();
+                string date = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
                 String update = String.Format("update Information set Name='{0}',Class='{1}',Section='{2}',Department='{3}',Gender='{4}',Roll='{5}',Shift='{6}',Nationality='{7}',Office_Phone='{8}',Title='{9}',DateOfBirth='{10}',DateOfEmployment='{11}',Mobile_Number='{12}',Home_address='{13}',Updated_By='{14}' ,Updated_Date='{15}'where Id={16}", name.Text, clas.SelectedItem.Text, section.SelectedItem.Text, dept, gender.SelectedItem.Text, roll.Text, shift.SelectedItem.Text, national.Text, officephone.Text, title.SelectedItem.Text, dob.Text, doe.Text, mobile.Text, homeaddress.Text, Session["user_id"].ToString(), date, Request.QueryString["id"]);
 
                 SqlConnection conn = new SqlConnection(Information.connectionstring);
