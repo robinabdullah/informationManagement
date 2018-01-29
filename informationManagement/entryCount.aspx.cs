@@ -18,10 +18,10 @@ namespace informationManagement
             }
             else
             {
-                if (Session["user_name"].ToString() == "Robin" || Session["user_name"].ToString() == "alamin")
+                if (Session["role"].ToString() == "admin")
                 {
 
-                    String insert = "select newLogin.name,count(Created_By) AS Entry from information, newLogin where Created_By=newLogin.Id group by newLogin.name";
+                    String insert = "select newLogin.name,count(Created_By) AS Entry from information, newLogin where Created_By=newLogin.Id group by rollup(newLogin.name)";
 
                     SqlConnection conn = new SqlConnection(Information.connectionstring);
                     SqlCommand cmd = new SqlCommand(insert, conn);
@@ -30,7 +30,7 @@ namespace informationManagement
                     count.DataSource = cmd.ExecuteReader();
                     count.DataBind();
 
-                    insert = "select class,count(Id) AS Entry from information group by class";
+                    insert = "select class,count(Id) AS Entry from information group by rollup(class)";
 
                     conn = new SqlConnection(Information.connectionstring);
                     cmd = new SqlCommand(insert, conn);
@@ -38,7 +38,7 @@ namespace informationManagement
 
                     classWiseCount.DataSource = cmd.ExecuteReader();
                     classWiseCount.DataBind();
-                    insert = "select Title,count(Title) as nbrOfEntry from Information group by Title";
+                    insert = "select Title,count(Title) as nbrOfEntry from Information group by rollup(Title)";
                     conn = new SqlConnection(Information.connectionstring);
                     cmd = new SqlCommand(insert, conn);
                     conn.Open();

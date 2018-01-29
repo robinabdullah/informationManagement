@@ -27,7 +27,7 @@ namespace informationManagement
             }
             else {
               
-                String search = String.Format("select Id, Name,Password from newLogin where Name='{0}' and Password='{1}'", name.Text, password.Text);
+                String search = String.Format("select Id, Name,Password,Role from newLogin where Name='{0}' and Password='{1}'", name.Text, password.Text);
 
 
                 SqlConnection conn = new SqlConnection(Information.connectionstring);
@@ -40,6 +40,7 @@ namespace informationManagement
                     String address = "informationPage.aspx";
                     Session["user_name"] = name.Text;
                     Session["user_id"] = reader["Id"].ToString();
+                    Session["role"] = reader["Role"].ToString();
                     Response.Redirect(address);
                 }
                 if (reader.HasRows == false)

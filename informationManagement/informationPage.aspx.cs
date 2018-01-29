@@ -20,7 +20,7 @@ namespace informationManagement
             {
                 username.Text = Session["user_name"].ToString();
             }
-           if(Request.QueryString["id"] != null && IsPostBack == false)
+           if(Request.QueryString["id"] != null && IsPostBack == false && Session["Role"].ToString() == "admin")
             {
                 save.Visible = false;
                 save.Enabled = false;
@@ -88,7 +88,10 @@ namespace informationManagement
             {
                 msg.Text = "please enter valid section";
             }
-
+            else if (department.Visible == true && department.SelectedIndex == 0)
+            {
+                msg.Text = "please enter valid department";
+            }
             else if (gender.SelectedItem.Text == "Select Gender")
             {
                 msg.Text = "please enter valid gender";
@@ -132,7 +135,7 @@ namespace informationManagement
             else
             {
 
-                string dept = (department.SelectedIndex == 0) ? "" : department.SelectedItem.Text;
+                string dept = (department.Visible == false) ? "" : department.SelectedItem.Text;
                 String insert = String.Format("insert into Information(Name,Class,Section,Department,Gender,Roll,Shift,Nationality,Office_Phone,Title,DateOfBirth,DateOfEmployment,Mobile_Number,Home_address,Created_By) OUTPUT INSERTED.ID values('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}',{14})", name.Text, clas.SelectedItem.Text, section.SelectedItem.Text, dept, gender.SelectedItem.Text, roll.Text, shift.SelectedItem.Text, national.Text, officephone.Text, title.SelectedItem.Text, dob.Text, doe.Text, mobile.Text, homeaddress.Text, Session["user_id"].ToString());
 
                 SqlConnection conn = new SqlConnection(Information.connectionstring);
@@ -228,26 +231,88 @@ namespace informationManagement
 
         protected void update_Click(object sender, EventArgs e)
         {
-            String dept = (department.SelectedIndex == 0) ? "" : department.SelectedItem.Text;
-            DateTime date = DateTime.Now;
-            String update = String.Format("update Information set Name='{0}',Class='{1}',Section='{2}',Department='{3}',Gender='{4}',Roll='{5}',Shift='{6}',Nationality='{7}',Office_Phone='{8}',Title='{9}',DateOfBirth='{10}',DateOfEmployment='{11}',Mobile_Number='{12}',Home_address='{13}',Updated_By='{14}' ,Updated_Date='{15}'where Id={16}",  name.Text, clas.SelectedItem.Text, section.SelectedItem.Text, dept, gender.SelectedItem.Text, roll.Text, shift.SelectedItem.Text, national.Text, officephone.Text, title.SelectedItem.Text, dob.Text, doe.Text, mobile.Text, homeaddress.Text, Session["user_id"].ToString(),date,Request.QueryString["id"]);
-
-            SqlConnection conn = new SqlConnection(Information.connectionstring);
-            SqlCommand cmd = new SqlCommand(update, conn);
-            conn.Open();
-
-            int a = cmd.ExecuteNonQuery();
-            if (a > 0)
+            if (name.Text == "")
             {
-                msg.Text = "successfully updated";
-                Clearall();
+                msg.Text = "please enter valid name";
             }
-
+            else if (clas.SelectedItem.Text == "Select Class")
+            {
+                msg.Text = "please enter valid class";
+            }
+            else if (section.SelectedItem.Text == "Select Section")
+            {
+                msg.Text = "please enter valid section";
+            }
+            else if (department.Visible==true &&  department.SelectedIndex == 0 )
+            {
+                msg.Text = "please enter valid department";
+            }
+            else if (gender.SelectedItem.Text == "Select Gender")
+            {
+                msg.Text = "please enter valid gender";
+            }
+            else if (roll.Text == "")
+            {
+                msg.Text = "please enter valid roll";
+            }
+            else if (shift.SelectedItem.Text == "Select Shift")
+            {
+                msg.Text = "please enter valid shift";
+            }
+            else if (national.Text == "")
+            {
+                msg.Text = "please enter valid nationality";
+            }
+            else if (officephone.Text == "")
+            {
+                msg.Text = "please enter valid officephone";
+            }
+            else if (title.SelectedItem.Text == "Select Title")
+            {
+                msg.Text = "please enter valid title";
+            }
+            else if (dob.Text == "")
+            {
+                msg.Text = "please enter valid DateOfBirth";
+            }
+            else if (doe.Text == "")
+            {
+                msg.Text = "please enter valid DateOfEmployeement";
+            }
+            else if (mobile.Text == " ")
+            {
+                msg.Text = "please enter valid mobile";
+            }
+            else if (homeaddress.Text == "")
+            {
+                msg.Text = "please enter valid homeaddress";
+            }
             else
             {
-                msg.Text = "updated failed";
-            }
+                string dept = (department.Visible == false) ? "" : department.SelectedItem.Text;
+                string date = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+                String update = String.Format("update Information set Name='{0}',Class='{1}',Section='{2}',Department='{3}',Gender='{4}',Roll='{5}',Shift='{6}',Nationality='{7}',Office_Phone='{8}',Title='{9}',DateOfBirth='{10}',DateOfEmployment='{11}',Mobile_Number='{12}',Home_address='{13}',Updated_By='{14}' ,Updated_Date='{15}'where Id={16}", name.Text, clas.SelectedItem.Text, section.SelectedItem.Text, dept, gender.SelectedItem.Text, roll.Text, shift.SelectedItem.Text, national.Text, officephone.Text, title.SelectedItem.Text, dob.Text, doe.Text, mobile.Text, homeaddress.Text, Session["user_id"].ToString(), date, Request.QueryString["id"]);
 
+                SqlConnection conn = new SqlConnection(Information.connectionstring);
+                SqlCommand cmd = new SqlCommand(update, conn);
+                conn.Open();
+
+                int a = cmd.ExecuteNonQuery();
+                if (a > 0)
+                {
+                    msg.Text = "successfully updated";
+                    Clearall();
+                    this.update.Enabled = false;
+                    this.update.Visible = false;
+                    this.save.Enabled = true;
+                    this.save.Visible = true;
+
+                }
+                else
+                {
+                    msg.Text = "updated failed";
+                }
+            }
 
         }
     }
