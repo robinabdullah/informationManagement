@@ -14,6 +14,20 @@
             <table>
                 <tr><td><h2>Search Infomation</h2></td></tr>
                 <tr>
+                       <td>ID</td>
+                      <td>
+                        <asp:TextBox ID="id" runat="server" TextMode="Number"></asp:TextBox>
+
+                     </td>
+                 </tr>
+                <tr>
+                       <td>Personal Number</td>
+                      <td>
+                        <asp:TextBox ID="officeNumber" runat="server" TextMode="Number"></asp:TextBox>
+
+                     </td>
+                 </tr>
+                <tr>
                     <td>Class</td>
 
                     <td>
@@ -63,13 +77,7 @@
            </td>
 
         </tr>
-                <tr>
-                       <td>Mobile Number</td>
-                      <td>
-                        <asp:TextBox ID="mobile" runat="server"></asp:TextBox>
-
-                     </td>
-                 </tr>
+                
                 <tr>
                     <td>
                         </td>
@@ -91,9 +99,9 @@
                 </tr>
 
             </table>
-            <asp:GridView ID="list" runat="server" OnRowEditing="list_RowEditing">
+            <asp:GridView ID="list" runat="server">
                 <Columns>
-                    <asp:HyperLinkField DataNavigateUrlFields="ID" DataNavigateUrlFormatString="/informationPage.aspx?id={0}" DataTextField="ID" DataTextFormatString="{0}" />
+                    <asp:HyperLinkField DataNavigateUrlFields="ID" DataNavigateUrlFormatString="/informationPage.aspx?id={0}" DataTextField="ID" DataTextFormatString="{0}" HeaderText="Edit" />
                 </Columns>
                
             </asp:GridView>

@@ -220,6 +220,24 @@ namespace informationManagement {
         protected global::System.Web.UI.WebControls.TextBox homeaddress;
         
         /// <summary>
+        /// imageGiven control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox imageGiven;
+        
+        /// <summary>
+        /// formFill control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox formFill;
+        
+        /// <summary>
         /// save control.
         /// </summary>
         /// <remarks>

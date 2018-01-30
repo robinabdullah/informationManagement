@@ -114,7 +114,7 @@ namespace informationManagement
 
             }
 
-            string selectedClass = clas.SelectedIndex == 0 ? "" : " class="+clas.SelectedItem.Text;//class 9
+            string selectedClass = clas.SelectedIndex == 0 ? "" : " and class="+clas.SelectedItem.Text;//class 9
           
             string selectedShift = shift.SelectedIndex == 0 ? "" : " and shift="+shift.SelectedItem.Text;
             string selectedTitle = title.SelectedIndex == 0 ? "" : " and title=" + title.SelectedItem.Text;
@@ -122,7 +122,7 @@ namespace informationManagement
 
             if (clas.SelectedIndex == 0 && shift.SelectedIndex == 0 && title.SelectedIndex == 0 && mobile.Text == "")
             {
-                search = "select * from Infomation where " + selectedClass + selectedShift + selectedTitle + selectedMobile;
+                search = "select * from Infomation where 1 = 1 " + selectedClass + selectedShift + selectedTitle + selectedMobile;
 
             }
             search = "select * from Infomation where " + selectedClass + selectedShift + selectedTitle + selectedMobile;
