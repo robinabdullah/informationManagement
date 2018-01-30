@@ -59,7 +59,7 @@
 
         </tr>
          <tr>
-            <td>Section</td>
+            <td>Section<span style="color:red">*</span></td>
              
            <td>
 
@@ -113,7 +113,7 @@
            <td>
                           
 
-               <asp:TextBox ID="roll" runat="server"></asp:TextBox>
+               <asp:TextBox ID="roll" runat="server" TextMode="Number"></asp:TextBox>
 
            </td>
 
@@ -143,11 +143,11 @@
 
         </tr>
           <tr>
-            <td>Office Phone    <span style="color:red">*</span></td>
+            <td>Personal Number    <span style="color:red">*</span></td>
              
            <td>         
 
-               <asp:TextBox ID="officephone" runat="server"></asp:TextBox>
+               <asp:TextBox ID="officephone" runat="server" TextMode="Number"></asp:TextBox>
 
            </td>
 
@@ -204,18 +204,30 @@
                  </td>
              </tr>
         <tr>
-            <td>Mobile Number</td>
+            <td>Guardian Number</td>
             <td>
-                <asp:TextBox ID="mobile" runat="server"></asp:TextBox>
+                <asp:TextBox ID="mobile" runat="server" TextMode="Number"></asp:TextBox>
 
             </td>
         </tr>
          <tr>
-            <td class="auto-style1">Home address</td>
+            <td class="auto-style1">Home address<span style="color:red">*</span></td>
             <td class="auto-style1">
 
                 <asp:TextBox ID="homeaddress" runat="server" Rows="0" TextMode="MultiLine" Height="84px" Width="163px"></asp:TextBox>
 
+            </td>
+        </tr>
+        <tr>
+            <td >Image Provided</td>
+            <td>
+                <asp:CheckBox ID="imageGiven" runat="server" Text="Image" />
+            </td>
+        </tr>
+        <tr>
+            <td >Form Filled</td>
+            <td>
+                <asp:CheckBox ID="formFill" runat="server" Text="Form"/>
             </td>
         </tr>
           <tr>
