@@ -230,6 +230,23 @@
                 <asp:CheckBox ID="formFill" runat="server" Text="Form"/>
             </td>
         </tr>
+        <tr>
+            <td >Blood Group</td>
+            <td>
+                <asp:DropDownList ID="bloodGroup" runat="server">
+                    <asp:ListItem>Select Blood Group</asp:ListItem>
+                    <asp:ListItem>N/A</asp:ListItem>
+                    <asp:ListItem>AB+</asp:ListItem>
+                    <asp:ListItem>AB-</asp:ListItem>
+                    <asp:ListItem>A+</asp:ListItem>
+                    <asp:ListItem>A-</asp:ListItem>
+                    <asp:ListItem>B+</asp:ListItem>
+                    <asp:ListItem>B-</asp:ListItem>
+                    <asp:ListItem>O+</asp:ListItem>
+                    <asp:ListItem>O-</asp:ListItem>
+                </asp:DropDownList>
+            </td>
+        </tr>
           <tr>
              <td></td>
              <td>
