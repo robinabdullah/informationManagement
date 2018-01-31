@@ -26,7 +26,7 @@ namespace informationManagement
                 save.Enabled = false;
                 update.Enabled = true;
                 update.Visible = true;
-                String select = "select Name,Class,Section,Department,Gender,Roll,Shift,Nationality,Office_Phone,Title,DateOfBirth,DateOfEmployment,Mobile_Number,Home_address,Image_Provided,Form_Filled from Information where Id=" + Request.QueryString["id"];
+                String select = "select Name,Class, Section, Department, Gender, Roll, Shift, Nationality, Office_Phone, Title,DateOfBirth, DateOfEmployment,Mobile_Number, Home_address, Image_Provided, Form_Filled, Blood_Group from Information where Id=" + Request.QueryString["id"];
                 SqlConnection conn = new SqlConnection(Information.connectionstring);
                 SqlCommand cmd = new SqlCommand(select, conn);
                 conn.Open();
@@ -63,12 +63,9 @@ namespace informationManagement
                     homeaddress.Text = reader["Home_address"].ToString();
                     imageGiven.Checked = bool.Parse(reader["Image_Provided"].ToString());
                     formFill.Checked = bool.Parse(reader["Form_Filled"].ToString());
+                    bloodGroup.SelectedValue = bloodGroup.Items.FindByText(reader["Blood_Group"].ToString()).Value;
 
                 }
-
-
-
-
 
             }
           
@@ -126,19 +123,23 @@ namespace informationManagement
             {
                 msg.Text = "please enter valid DateOfEmployeement";
             }
-            else if (mobile.Text == "" || mobile.Text.Trim().Length != 11)
-            {
-                msg.Text = "please enter valid guardian number";
-            }
+            //else if (mobile.Text == "" || mobile.Text.Trim().Length != 11)
+            //{
+            //    msg.Text = "please enter valid guardian number";
+            //}
             else if (homeaddress.Text == "")
             {
                 msg.Text = "please enter valid homeaddress";
+            }
+            else if (bloodGroup.SelectedIndex == 0)
+            {
+                msg.Text = "please enter valid blood group";
             }
             else
             {
 
                 string dept = (department.Visible == false) ? "" : department.SelectedItem.Text;
-                String insert = String.Format("insert into Information(Name,Class,Section,Department,Gender,Roll,Shift,Nationality,Office_Phone,Title,DateOfBirth,DateOfEmployment,Mobile_Number,Home_address,Created_By,Image_Provided,Form_Filled) OUTPUT INSERTED.ID values('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}',{14},'{15}','{16}')", name.Text, clas.SelectedItem.Text, section.SelectedItem.Text, dept, gender.SelectedItem.Text, roll.Text, shift.SelectedItem.Text, national.Text, officephone.Text, title.SelectedItem.Text, dob.Text, doe.Text, mobile.Text, homeaddress.Text, Session["user_id"].ToString(), imageGiven.Checked, formFill.Checked);
+                String insert = String.Format("insert into Information(Name,Class,Section,Department,Gender,Roll,Shift,Nationality,Office_Phone,Title,DateOfBirth,DateOfEmployment,Mobile_Number,Home_address,Created_By,Image_Provided,Form_Filled, Blood_Group) OUTPUT INSERTED.ID values('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}',{14},'{15}','{16}', '{17}')", name.Text, clas.SelectedItem.Text, section.SelectedItem.Text, dept, gender.SelectedItem.Text, roll.Text, shift.SelectedItem.Text, national.Text, officephone.Text, title.SelectedItem.Text, dob.Text, doe.Text, mobile.Text, homeaddress.Text, Session["user_id"].ToString(), imageGiven.Checked, formFill.Checked, bloodGroup.SelectedItem.Text);
 
                 SqlConnection conn = new SqlConnection(Information.connectionstring);
                 SqlCommand cmd = new SqlCommand(insert, conn);
@@ -159,7 +160,7 @@ namespace informationManagement
 
         protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
         {
-            Calendar1.Visible = true;
+            Calendar1.Visible = !Calendar1.Visible;
         }
 
         protected void Calendar1_SelectionChanged(object sender, EventArgs e)
@@ -171,7 +172,7 @@ namespace informationManagement
 
         protected void ImageButton2_Click(object sender, ImageClickEventArgs e)
         {
-            Calendar2.Visible = true;
+            Calendar2.Visible = !Calendar2.Visible;
         }
 
         protected void Calendar2_SelectionChanged(object sender, EventArgs e)
@@ -205,6 +206,7 @@ namespace informationManagement
             homeaddress.Text = "";
             imageGiven.Checked = false;
             formFill.Checked = false;
+            bloodGroup.SelectedIndex = 0;
             save.Visible = true;
             save.Enabled = true;
             update.Visible = false;
@@ -287,19 +289,23 @@ namespace informationManagement
             {
                 msg.Text = "please enter valid DateOfEmployeement";
             }
-            else if (mobile.Text == "" || mobile.Text.Trim().Length != 11)
-            {
-                msg.Text = "please enter valid  guardian number";
-            }
+            //else if (mobile.Text == "" || mobile.Text.Trim().Length != 11)
+            //{
+            //    msg.Text = "please enter valid  guardian number";
+            //}
             else if (homeaddress.Text == "")
             {
                 msg.Text = "please enter valid homeaddress";
+            }
+            else if (bloodGroup.SelectedIndex == 0)
+            {
+                msg.Text = "please enter valid blood group";
             }
             else
             {
                 string dept = (department.Visible == false) ? "" : department.SelectedItem.Text;
                 string date = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
-                String update = String.Format("update Information set Name='{0}',Class='{1}',Section='{2}',Department='{3}',Gender='{4}',Roll='{5}',Shift='{6}',Nationality='{7}',Office_Phone='{8}',Title='{9}',DateOfBirth='{10}',DateOfEmployment='{11}',Mobile_Number='{12}',Home_address='{13}',Updated_By='{14}' ,Updated_Date='{15}',Image_Provided='{16}',Form_Filled='{17}' where Id={18}", name.Text, clas.SelectedItem.Text, section.SelectedItem.Text, dept, gender.SelectedItem.Text, roll.Text, shift.SelectedItem.Text, national.Text, officephone.Text, title.SelectedItem.Text, dob.Text, doe.Text, mobile.Text, homeaddress.Text, Session["user_id"].ToString(), date, imageGiven.Checked, formFill.Checked, Request.QueryString["id"]);
+                String update = String.Format("update Information set Name='{0}',Class='{1}',Section='{2}',Department='{3}',Gender='{4}',Roll='{5}',Shift='{6}',Nationality='{7}',Office_Phone='{8}',Title='{9}',DateOfBirth='{10}',DateOfEmployment='{11}',Mobile_Number='{12}',Home_address='{13}',Updated_By='{14}' ,Updated_Date='{15}',Image_Provided='{16}',Form_Filled='{17}', Blood_group='{18}' where Id={19}", name.Text, clas.SelectedItem.Text, section.SelectedItem.Text, dept, gender.SelectedItem.Text, roll.Text, shift.SelectedItem.Text, national.Text, officephone.Text, title.SelectedItem.Text, dob.Text, doe.Text, mobile.Text, homeaddress.Text, Session["user_id"].ToString(), date, imageGiven.Checked, formFill.Checked, bloodGroup.SelectedItem.Text, Request.QueryString["id"]);
 
                 SqlConnection conn = new SqlConnection(Information.connectionstring);
                 SqlCommand cmd = new SqlCommand(update, conn);
