@@ -16,6 +16,8 @@ namespace informationManagement
             {
                 Response.Redirect("LoginPage.aspx");
             }
+            else if(Session["role"].ToString() == "guest")
+                Response.Redirect("informationPage.aspx");
             else
                 username.Text = Session["user_name"].ToString();
         }
