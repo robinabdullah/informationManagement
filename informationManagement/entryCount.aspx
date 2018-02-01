@@ -9,14 +9,16 @@
 <body>
     <form id="form1" runat="server">
     <div>
+        <a href="informationPage.aspx">Back To Infomation Page</a>
         <h2>Entry Count Per User</h2>
         <asp:GridView ID="count" runat="server"></asp:GridView>
         <h2>Entry Count Per Class</h2>
         <asp:GridView ID="classWiseCount" runat="server"></asp:GridView>
          <h2>Entry Count Per Title</h2>
         <asp:GridView ID="titleWiseCount" runat="server"></asp:GridView>
+        <h2>Entry Count Per Shift</h2>
+        <asp:GridView ID="shiftWiseCount" runat="server"></asp:GridView>
         <br>
-        <a href="informationPage.aspx">Back To Infomation Page</a>
     </div>
     </form>
 </body>
