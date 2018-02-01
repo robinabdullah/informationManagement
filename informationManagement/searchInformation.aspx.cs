@@ -128,6 +128,10 @@ namespace informationManagement
                 list.DataSource = reader;
                 list.DataBind();
             }
+            reader.Close();
+            conn.Close();
+            conn.Dispose();
+            SqlConnection.ClearPool(conn);
         }
 
         protected void logout_Click(object sender, EventArgs e)
