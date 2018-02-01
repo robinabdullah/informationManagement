@@ -47,6 +47,11 @@ namespace informationManagement
                 {
                     msg.Text = "Login failed";
                 }
+
+                reader.Close();
+                conn.Close();
+                conn.Dispose();
+                SqlConnection.ClearPool(conn);
             }
 
         }

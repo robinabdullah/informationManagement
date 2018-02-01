@@ -66,6 +66,10 @@ namespace informationManagement
                     bloodGroup.SelectedValue = bloodGroup.Items.FindByText(reader["Blood_Group"].ToString()).Value;
 
                 }
+                reader.Close();
+                conn.Close();
+                conn.Dispose();
+                SqlConnection.ClearPool(conn);
 
             }
           
@@ -123,10 +127,10 @@ namespace informationManagement
             {
                 msg.Text = "please enter valid DateOfEmployeement";
             }
-            //else if (mobile.Text == "" || mobile.Text.Trim().Length != 11)
-            //{
-            //    msg.Text = "please enter valid guardian number";
-            //}
+            else if (mobile.Text == "" || mobile.Text.Trim().Length != 11)
+            {
+                msg.Text = "please enter valid guardian number";
+            }
             else if (homeaddress.Text == "")
             {
                 msg.Text = "please enter valid homeaddress";
@@ -151,10 +155,12 @@ namespace informationManagement
                     msg.Text = "successfully inserted. ID: " + a;
                     Clearall();
                 }
-
                 else
                     msg.Text = "save failed ";
 
+                conn.Close();
+                conn.Dispose();
+                SqlConnection.ClearPool(conn);
             }
         }
 
@@ -289,10 +295,10 @@ namespace informationManagement
             {
                 msg.Text = "please enter valid DateOfEmployeement";
             }
-            //else if (mobile.Text == "" || mobile.Text.Trim().Length != 11)
-            //{
-            //    msg.Text = "please enter valid  guardian number";
-            //}
+            else if (mobile.Text == "" || mobile.Text.Trim().Length != 11)
+            {
+                msg.Text = "please enter valid  guardian number";
+            }
             else if (homeaddress.Text == "")
             {
                 msg.Text = "please enter valid homeaddress";
@@ -326,6 +332,10 @@ namespace informationManagement
                 {
                     msg.Text = "updated failed";
                 }
+                
+                conn.Close();
+                conn.Dispose();
+                SqlConnection.ClearPool(conn);
             }
 
         }
