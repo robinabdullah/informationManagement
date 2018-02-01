@@ -29,6 +29,7 @@ namespace informationManagement
 
                     count.DataSource = cmd.ExecuteReader();
                     count.DataBind();
+                    conn.Close();
 
                     insert = "select class,count(Id) AS Entry from information group by rollup(class)";
 
@@ -38,13 +39,27 @@ namespace informationManagement
 
                     classWiseCount.DataSource = cmd.ExecuteReader();
                     classWiseCount.DataBind();
-                    insert = "select Title,count(Title) as nbrOfEntry from Information group by rollup(Title)";
+                    conn.Close();
+
+                    insert = "select Title,count(Title) as EntryCount from Information group by rollup(Title)";
                     conn = new SqlConnection(Information.connectionstring);
                     cmd = new SqlCommand(insert, conn);
                     conn.Open();
 
-                   titleWiseCount.DataSource = cmd.ExecuteReader();
+                    titleWiseCount.DataSource = cmd.ExecuteReader();
                     titleWiseCount.DataBind();
+                    conn.Close();
+
+                    insert = "select Shift,count(Shift) as EntryCount from Information group by rollup(Shift)";
+                    conn = new SqlConnection(Information.connectionstring);
+                    cmd = new SqlCommand(insert, conn);
+                    conn.Open();
+
+                    titleWiseCount.DataSource = cmd.ExecuteReader();
+                    titleWiseCount.DataBind();
+
+                    conn.Close();
+                    SqlConnection.ClearPool(conn);
                 }
                 else
                 {
