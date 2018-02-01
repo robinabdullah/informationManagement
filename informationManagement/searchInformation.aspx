@@ -92,7 +92,7 @@
                   
                 <tr>
                     <td>
-                        <asp:Label ID="msg" runat="server" Text=""></asp:Label>
+                        <asp:Label ID="msg" runat="server" Font-Bold="True"></asp:Label>
 
                     </td>
 
