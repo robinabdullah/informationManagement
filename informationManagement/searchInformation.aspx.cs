@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -127,6 +128,8 @@ namespace informationManagement
             {
                 list.DataSource = reader;
                 list.DataBind();
+
+                msg.Text = list.Rows.Count + " records found";
             }
             reader.Close();
             conn.Close();
