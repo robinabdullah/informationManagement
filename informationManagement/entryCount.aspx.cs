@@ -55,8 +55,8 @@ namespace informationManagement
                     cmd = new SqlCommand(insert, conn);
                     conn.Open();
 
-                    titleWiseCount.DataSource = cmd.ExecuteReader();
-                    titleWiseCount.DataBind();
+                    shiftWiseCount.DataSource = cmd.ExecuteReader();
+                    shiftWiseCount.DataBind();
 
                     conn.Close();
                     SqlConnection.ClearPool(conn);
