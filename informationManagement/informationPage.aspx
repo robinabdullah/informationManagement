@@ -253,6 +253,7 @@
                  <asp:Button ID="save" runat="server" Text="Save" OnClick="SaveButton1_Click" />
                  <asp:Button ID="update" runat="server" Text="Update" Visible="false" OnClick="update_Click"/>
                  <asp:Button ID="reset" runat="server" Text="Reset" OnClick="resetButton3_Click" />
+                 <a href="searchInformation.aspx">Search</a>
                  <%--<asp:Button ID="Button4" runat="server" Text="Search" OnClick="searchButton4_Click" />--%>
 
             </td>
@@ -267,7 +268,7 @@
         
     </table>
                 <asp:Label ForeColor="red" ID="msg" runat="server" Text=""></asp:Label><br>
-                 <a href="searchInformation.aspx">Search Information</a>
+                 
 
     </div>
     </form>
