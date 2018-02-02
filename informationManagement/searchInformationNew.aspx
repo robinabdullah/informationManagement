@@ -125,12 +125,18 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>Show Data</td>
+                    <td>
+                        <asp:CheckBox ID="withTableData" runat="server" Text="Show With Data" Font-Bold="true" ForeColor="Red" />
+                    </td>
+                </tr>
+                <tr>
                     <td></td>
                     <td>
 
                         <asp:Button ID="Button1" runat="server" Text="Search" OnClick="searchButton1_Click" />
                         <asp:Button ID="reset" runat="server" Text="Reset" OnClick="reset_Click" />
-                        <a href="informationPage.aspx">Back</a>
+                        <a href="informationPage.aspx">Back</a> | <a href="searchInformation.aspx">Old Search Panel</a>
                     </td>
 
                 </tr>

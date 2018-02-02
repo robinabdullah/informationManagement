@@ -30,13 +30,14 @@ namespace informationManagement
             String search;
             string commonQuery = "select Information.id, Information.Name, Class, Section, Department, Gender, Roll, Shift, Title,Office_Phone as Personal_Number, DateofBirth, Mobile_Number as Guardian_Number,Home_Address, newLogin.name as Created_By,Created_Date, Updated_By,Updated_Date, Image_Provided, Form_Filled, Blood_Group, Blood_Group_Checked, Deleted_By, Deleted_Date from Information, newLogin where created_by=newLogin.ID ";
 
+            string countQuery = "select count(id) as count from information where 1 = 1 ";
+
             if (id.Text.Trim() != "")
             {
                 search = String.Format(commonQuery + " and Information.id={0}", id.Text.Trim());
             }
             else
             {
-
                 string selectedOfficeMobile = officeNumber.Text == "" ? "" : " and office_Phone='" + officeNumber.Text + "'";
                 string selectedMobileNo = mobile.Text == "" ? "" : " and Mobile_Number='" + mobile.Text + "'";
                 string selectedClass = clas.SelectedIndex == 0 ? "" : " and class='" + clas.SelectedItem.Text + "'";//class 9
@@ -46,28 +47,32 @@ namespace informationManagement
                 string selectedBloodGroupChecked = bloodGroupChecked.Checked == false ? "" : " and Blood_Group_Checked=1" ;
                 string selectedImageProvided = imageProvided.Checked == false ? "" : " and Image_Provided=1" ;
                 string selectedFormFilled = formFilled.Checked == false ? "" : " and Form_Filled=1" ;
-                
-                search = commonQuery + selectedOfficeMobile + selectedMobileNo + selectedClass + selectedShift + selectedTitle + selectedBloodGroup + selectedBloodGroupChecked + selectedImageProvided + selectedFormFilled;
+
+                if (withTableData.Checked == true)
+                    search = commonQuery + selectedOfficeMobile + selectedMobileNo + selectedClass + selectedShift + selectedTitle + selectedBloodGroup + selectedBloodGroupChecked + selectedImageProvided + selectedFormFilled;
+                else
+                    search = countQuery + selectedOfficeMobile + selectedMobileNo + selectedClass + selectedShift + selectedTitle + selectedBloodGroup + selectedBloodGroupChecked + selectedImageProvided + selectedFormFilled;
 
             }
-
+            
             SqlConnection conn = new SqlConnection(Information.connectionstring);
             SqlCommand cmd = new SqlCommand(search, conn);
             conn.Open();
-
-            SqlDataReader reader = cmd.ExecuteReader();
-            if (reader.HasRows == false)
+            SqlDataReader reader = null;
+            if (withTableData.Checked == true || id.Text.Trim() != "")
             {
-                msg.Text = "Not found";
+                reader = cmd.ExecuteReader();
+                list.DataSource = reader;
+                list.DataBind();
+                msg.Text = list.Rows.Count + " records found";
+                reader.Close();
             }
             else
             {
-                list.DataSource = reader;
-                list.DataBind();
-
-                msg.Text = list.Rows.Count + " records found";
+                int rows = (int)cmd.ExecuteScalar();
+                msg.Text = rows + " records found";
             }
-            reader.Close();
+            
             conn.Close();
             conn.Dispose();
             SqlConnection.ClearPool(conn);

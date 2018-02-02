@@ -85,7 +85,7 @@
 
                         <asp:Button ID="Button1" runat="server" Text="Search" OnClick="searchButton1_Click" />
                         <asp:Button ID="reset" runat="server" Text="Reset" OnClick="reset_Click" />
-                        <a href="informationPage.aspx">Back</a>
+                        <a href="informationPage.aspx">Back</a> | <a href="informationPageNew.aspx">New Search Panel</a>
                     </td>
                    
                 </tr>
