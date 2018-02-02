@@ -72,7 +72,8 @@ namespace informationManagement
                 int rows = (int)cmd.ExecuteScalar();
                 msg.Text = rows + " records found";
             }
-            
+
+            withTableData.Checked = false;
             conn.Close();
             conn.Dispose();
             SqlConnection.ClearPool(conn);
