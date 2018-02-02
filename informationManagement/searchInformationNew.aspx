@@ -9,10 +9,34 @@
 <body>
     <form id="form1" runat="server">
         <div>
-        <asp:Label ID="username" runat="server" Font-Bold="True" Font-Size="Larger" ></asp:Label> 
-         <asp:Button ID="logout" runat="server" Text="Log Out" OnClick="logout_Click" />
+            <asp:Label ID="username" runat="server" Font-Bold="True" Font-Size="Larger"></asp:Label>
+            <asp:Button ID="logout" runat="server" Text="Log Out" OnClick="logout_Click" />
             <table>
-                <tr><td><h2>Search Infomation</h2></td></tr>
+                <tr>
+                    <td>
+                        <h2>Search Infomation</h2>
+                    </td>
+                </tr>
+                <tr>
+                    <td>ID</td>
+                    <td>
+                        <asp:TextBox ID="id" runat="server" TextMode="Number"></asp:TextBox>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>Personal Number</td>
+                    <td>
+                        <asp:TextBox ID="officeNumber" runat="server" TextMode="Number"></asp:TextBox>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>Guardian Number</td>
+                    <td>
+                        <asp:TextBox ID="mobile" runat="server" TextMode="Number"></asp:TextBox>
+                    </td>
+                </tr>
                 <tr>
                     <td>Class</td>
 
@@ -48,50 +72,84 @@
                     </td>
 
                 </tr>
-                  <tr>
-            <td>Title</td>
-             
-           <td>          
-
-               <asp:DropDownList ID="title" runat="server">
-                   <asp:ListItem Value="0">Select Title</asp:ListItem>
-                   <asp:ListItem Value="1">Teacher</asp:ListItem>
-                   <asp:ListItem Value="2">Student</asp:ListItem>
-                   <asp:ListItem Value="3">Committee</asp:ListItem>
-               </asp:DropDownList>
-
-           </td>
-
-        </tr>
                 <tr>
-                       <td>Mobile Number</td>
-                      <td>
-                        <asp:TextBox ID="mobile" runat="server"></asp:TextBox>
-
-                     </td>
-                 </tr>
-                <tr>
+                    <td>Title</td>
                     <td>
-                        </td>
+
+                        <asp:DropDownList ID="title" runat="server">
+                            <asp:ListItem Value="0">Select Title</asp:ListItem>
+                            <asp:ListItem Value="1">Teacher</asp:ListItem>
+                            <asp:ListItem Value="2">Student</asp:ListItem>
+                            <asp:ListItem Value="3">Committee</asp:ListItem>
+                        </asp:DropDownList>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>Blood Group</td>
+                    <td>
+
+                        <asp:DropDownList ID="bloodGroup" runat="server">
+                    <asp:ListItem>Select Blood Group</asp:ListItem>
+                    <asp:ListItem>N/A</asp:ListItem>
+                    <asp:ListItem>AB+</asp:ListItem>
+                    <asp:ListItem>AB-</asp:ListItem>
+                    <asp:ListItem>A+</asp:ListItem>
+                    <asp:ListItem>A-</asp:ListItem>
+                    <asp:ListItem>B+</asp:ListItem>
+                    <asp:ListItem>B-</asp:ListItem>
+                    <asp:ListItem>O+</asp:ListItem>
+                    <asp:ListItem>O-</asp:ListItem>
+                </asp:DropDownList>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>Blood Group Tested</td>
+                    <td>
+                        
+                        <asp:CheckBox ID="bloodGroupChecked" runat="server" Text="Tested" />
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>Image Provided</td>
+                    <td>
+                        <asp:CheckBox ID="imageProvided" runat="server" Text="Image" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Form Filled</td>
+                    <td>
+                        <asp:CheckBox ID="formFilled" runat="server" Text="Form"  />
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
                     <td>
 
                         <asp:Button ID="Button1" runat="server" Text="Search" OnClick="searchButton1_Click" />
                         <asp:Button ID="reset" runat="server" Text="Reset" OnClick="reset_Click" />
                         <a href="informationPage.aspx">Back</a>
                     </td>
-                   
+
                 </tr>
-                  
+
                 <tr>
                     <td>
-                        <asp:Label ID="msg" runat="server" Text=""></asp:Label>
+                        <asp:Label ID="msg" runat="server" Font-Bold="True"></asp:Label>
 
                     </td>
 
                 </tr>
 
             </table>
-            <asp:GridView ID="list" runat="server"></asp:GridView>
+            <asp:GridView ID="list" runat="server">
+                <Columns>
+                    <asp:HyperLinkField DataNavigateUrlFields="ID" DataNavigateUrlFormatString="/informationPage.aspx?id={0}" DataTextField="ID" DataTextFormatString="{0}" HeaderText="Edit" />
+                </Columns>
+
+            </asp:GridView>
         </div>
     </form>
 </body>

@@ -16,117 +16,41 @@ namespace informationManagement
             {
                 Response.Redirect("LoginPage.aspx");
             }
+            else if (Session["role"].ToString() == "guest")
+                Response.Redirect("informationPage.aspx");
             else
                 username.Text = Session["user_name"].ToString();
-        }
+    }
 
         protected void searchButton1_Click(object sender, EventArgs e)
         {
             msg.Text = " ";
             list.DataSource = null;
-          list.DataBind();
+            list.DataBind();
             String search;
+            string commonQuery = "select Information.id, Information.Name, Class, Section, Department, Gender, Roll, Shift, Title,Office_Phone as Personal_Number, DateofBirth, Mobile_Number as Guardian_Number,Home_Address, newLogin.name as Created_By,Created_Date, Updated_By,Updated_Date, Image_Provided, Form_Filled, Blood_Group, Blood_Group_Checked, Deleted_By, Deleted_Date from Information, newLogin where created_by=newLogin.ID ";
 
-            //if (clas.SelectedIndex != 0 && shift.SelectedIndex != 0 && title.SelectedIndex != 0 && mobile.Text != "")
-            //{
-            //    search = String.Format("select * from Information where Class='{0}' and Shift='{1}' and Title='{2}' and Mobile_Number='{3}'", clas.SelectedItem.Text, shift.SelectedItem.Text, title.SelectedItem.Text, mobile.Text);
-
-            //}
-
-            //else if (clas.SelectedIndex != 0 && shift.SelectedIndex != 0 && title.SelectedIndex != 0)
-            //{
-            //    search = String.Format("select * from Information where Class='{0}' and Shift='{1}' and Title='{2}'", clas.SelectedItem.Text, shift.SelectedItem.Text, title.SelectedItem.Text);
-
-            //}
-            //else if (clas.SelectedIndex != 0 && shift.SelectedIndex != 0)
-            //{
-            //    search = String.Format("select * from Information where Class='{0}' and Shift='{1}'", clas.SelectedItem.Text, shift.SelectedItem.Text);
-
-            //}
-            //else if (clas.SelectedIndex != 0 && title.SelectedIndex != 0)
-            //{
-            //    search = String.Format("select * from Information where Class='{0}' and Title='{1}'", clas.SelectedItem.Text, title.SelectedItem.Text);
-
-            //}
-            //else if (clas.SelectedIndex != 0 && mobile.Text != "")
-            //{
-            //    search = String.Format("select * from Information where Class='{0}' and Mobile_Number='{1}'", clas.SelectedItem.Text, mobile.Text);
-
-            //}
-            //else if (shift.SelectedIndex != 0 && title.SelectedIndex != 0 && mobile.Text != "")
-            //{
-            //    search = String.Format("select * from Information where Shift='{0}' and Title='{1}' and Mobile_Number='{2}'", shift.SelectedItem.Text, title.SelectedItem.Text, mobile.Text);
-
-            //}
-
-            //else if (shift.SelectedIndex != 0 && title.SelectedIndex != 0)
-            //{
-            //    search = String.Format("select * from Information where Shift='{0}' and Title='{1}'", shift.SelectedItem.Text, title.SelectedItem.Text);
-
-            //}
-            //else if (shift.SelectedIndex != 0 && mobile.Text != "")
-            //{
-            //    search = String.Format("select * from Information where Shift='{0}'  and Mobile_Number='{1}'", shift.SelectedItem.Text, mobile.Text);
-
-            //}
-            //else if (clas.SelectedIndex != 0 && title.SelectedIndex != 0 && mobile.Text != "")
-            //{
-            //    search = String.Format("select * from Information where Class='{0}' and Title='{1}' and Mobile_Number='{2}'", clas.SelectedItem.Text, title.SelectedItem.Text, mobile.Text);
-
-
-            //}
-            //else if ( title.SelectedIndex != 0 && mobile.Text != "")
-            //{
-            //    search = String.Format("select * from Information where Title='{0}' and Mobile_Number='{1}'", title.SelectedItem.Text, mobile.Text);
-
-            //}
-            //else if (clas.SelectedIndex != 0)
-            //{
-            //    search = String.Format("select * from Information where Class='{0}'", clas.SelectedItem.Text);
-
-            //}
-
-            //else if (shift.SelectedIndex != 0)
-            //{
-            //    search = String.Format("select * from Information where Shift='{0}'", shift.SelectedItem.Text);
-
-            //}
-
-            //else if (title.SelectedIndex != 0)
-            //{
-            //    search = String.Format("select * from Information where Title='{0}'", title.SelectedItem.Text);
-
-            //}
-            //else if (mobile.Text != "")
-            //{
-            //    search = String.Format("select * from Information where Mobile_Number='{0}'", mobile.Text);
-
-            //}
-            //else
-            //{
-            //    search = "select * from Information ";
-
-            //}
-
-            if (clas.SelectedIndex == 0 && shift.SelectedIndex == 0 && title.SelectedIndex == 0 && mobile.Text == "")
+            if (id.Text.Trim() != "")
             {
-                search = String.Format("select * from Information");
+                search = String.Format(commonQuery + " and Information.id={0}", id.Text.Trim());
+            }
+            else
+            {
+
+                string selectedOfficeMobile = officeNumber.Text == "" ? "" : " and office_Phone='" + officeNumber.Text + "'";
+                string selectedMobileNo = mobile.Text == "" ? "" : " and Mobile_Number='" + mobile.Text + "'";
+                string selectedClass = clas.SelectedIndex == 0 ? "" : " and class='" + clas.SelectedItem.Text + "'";//class 9
+                string selectedShift = shift.SelectedIndex == 0 ? "" : " and shift='" + shift.SelectedItem.Text + "'";
+                string selectedTitle = title.SelectedIndex == 0 ? "" : " and title='" + title.SelectedItem.Text + "'";
+                string selectedBloodGroup = bloodGroup.SelectedIndex == 0 ? "" : " and Blood_Group='" + bloodGroup.SelectedItem.Text + "'";
+                string selectedBloodGroupChecked = bloodGroupChecked.Checked == false ? "" : " and Blood_Group_Checked=1" ;
+                string selectedImageProvided = imageProvided.Checked == false ? "" : " and Image_Provided=1" ;
+                string selectedFormFilled = formFilled.Checked == false ? "" : " and Form_Filled=1" ;
+                
+                search = commonQuery + selectedOfficeMobile + selectedMobileNo + selectedClass + selectedShift + selectedTitle + selectedBloodGroup + selectedBloodGroupChecked + selectedImageProvided + selectedFormFilled;
 
             }
 
-            string selectedClass = clas.SelectedIndex == 0 ? "" : " and class="+clas.SelectedItem.Text;//class 9
-          
-            string selectedShift = shift.SelectedIndex == 0 ? "" : " and shift="+shift.SelectedItem.Text;
-            string selectedTitle = title.SelectedIndex == 0 ? "" : " and title=" + title.SelectedItem.Text;
-            string selectedMobile = mobile.Text == "" ? "" : " and mobile="+mobile.Text;
-
-            if (clas.SelectedIndex == 0 && shift.SelectedIndex == 0 && title.SelectedIndex == 0 && mobile.Text == "")
-            {
-                search = "select * from Infomation where 1 = 1 " + selectedClass + selectedShift + selectedTitle + selectedMobile;
-
-            }
-            search = "select * from Infomation where " + selectedClass + selectedShift + selectedTitle + selectedMobile;
-            //search = "select * from Infomation where " + ((clas.SelectedItem.Value ="0"? "": "class = " + clas.SelectedItem.Text ) +" and shift = " + shift.SelectedItem.Text;
             SqlConnection conn = new SqlConnection(Information.connectionstring);
             SqlCommand cmd = new SqlCommand(search, conn);
             conn.Open();
@@ -140,7 +64,13 @@ namespace informationManagement
             {
                 list.DataSource = reader;
                 list.DataBind();
+
+                msg.Text = list.Rows.Count + " records found";
             }
+            reader.Close();
+            conn.Close();
+            conn.Dispose();
+            SqlConnection.ClearPool(conn);
         }
 
         protected void logout_Click(object sender, EventArgs e)
@@ -152,17 +82,28 @@ namespace informationManagement
 
         protected void reset_Click(object sender, EventArgs e)
         {
-            
-           
+
+            id.Text = "";
             clas.SelectedIndex = 0;
-           
+
             shift.SelectedIndex = 0;
-           
+
             title.SelectedIndex = 0;
-           
+
+            officeNumber.Text = "";
+
             mobile.Text = "";
-            
-        
-    }
+
+            bloodGroup.SelectedIndex = 0;
+            bloodGroupChecked.Checked = false;
+            imageProvided.Checked = false;
+            formFilled.Checked = false;
+
+            list.DataSource = null;
+            list.DataBind();
+
+            msg.Text = "";
+        }
+
     }
 }
