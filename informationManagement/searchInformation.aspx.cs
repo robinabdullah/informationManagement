@@ -28,7 +28,7 @@ namespace informationManagement
             list.DataSource = null;
             list.DataBind();
             String search;
-            string commonQuery = "select Information.id, Information.Name, Class, Section, Department, Gender, Roll, Shift, Title,Office_Phone as Personal_Number, DateofBirth, Mobile_Number as Guardian_Number,Home_Address, newLogin.name as Created_By,Created_Date, Updated_By,Updated_Date, Image_Provided, Form_Filled, Blood_Group, Deleted_By, Deleted_Date from Information, newLogin where created_by=newLogin.ID ";
+            string commonQuery = "select Information.id, Information.Name, Class, Section, Department, Gender, Roll, Shift, Title,Office_Phone as Personal_Number, DateofBirth, Mobile_Number as Guardian_Number,Home_Address, newLogin.name as Created_By,Created_Date, Updated_By,Updated_Date, Image_Provided, Form_Filled, Blood_Group, Blood_Group_Checked, Deleted_By, Deleted_Date from Information, newLogin where created_by=newLogin.ID ";
 
             if (id.Text.Trim() !="")
             {
