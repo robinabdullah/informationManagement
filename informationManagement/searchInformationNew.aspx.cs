@@ -103,7 +103,7 @@ namespace informationManagement
             bloodGroupChecked.Checked = false;
             imageProvided.Checked = false;
             formFilled.Checked = false;
-
+            withTableData.Checked = false;
             list.DataSource = null;
             list.DataBind();
 
