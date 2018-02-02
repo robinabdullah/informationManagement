@@ -245,6 +245,8 @@
                     <asp:ListItem>O+</asp:ListItem>
                     <asp:ListItem>O-</asp:ListItem>
                 </asp:DropDownList>
+                &nbsp;
+                <asp:CheckBox ID="bloodGroupChecked" runat="server" Text="Tested"/>
             </td>
         </tr>
           <tr>
