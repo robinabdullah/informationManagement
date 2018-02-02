@@ -40,6 +40,33 @@ namespace informationManagement {
         protected global::System.Web.UI.WebControls.Button logout;
         
         /// <summary>
+        /// id control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox id;
+        
+        /// <summary>
+        /// officeNumber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox officeNumber;
+        
+        /// <summary>
+        /// mobile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox mobile;
+        
+        /// <summary>
         /// clas control.
         /// </summary>
         /// <remarks>
@@ -67,13 +94,40 @@ namespace informationManagement {
         protected global::System.Web.UI.WebControls.DropDownList title;
         
         /// <summary>
-        /// mobile control.
+        /// bloodGroup control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox mobile;
+        protected global::System.Web.UI.WebControls.DropDownList bloodGroup;
+        
+        /// <summary>
+        /// bloodGroupChecked control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox bloodGroupChecked;
+        
+        /// <summary>
+        /// imageProvided control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox imageProvided;
+        
+        /// <summary>
+        /// formFilled control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox formFilled;
         
         /// <summary>
         /// Button1 control.
