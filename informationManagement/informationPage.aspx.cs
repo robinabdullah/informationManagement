@@ -184,7 +184,7 @@ namespace informationManagement
 
         protected void Calendar2_SelectionChanged(object sender, EventArgs e)
         {
-            doe.Text = Calendar1.SelectedDate.ToShortDateString();
+            doe.Text = Calendar2.SelectedDate.ToShortDateString();
             Calendar2.Visible = false;
 
 
