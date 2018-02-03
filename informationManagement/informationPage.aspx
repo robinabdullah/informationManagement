@@ -246,7 +246,8 @@
                     <asp:ListItem>O-</asp:ListItem>
                 </asp:DropDownList>
                 &nbsp;
-                <asp:CheckBox ID="bloodGroupChecked" runat="server" Text="Tested"/>
+                <asp:CheckBox ID="bloodGroupChecked" runat="server" Text="Tested" AutoPostBack="true" OnCheckedChanged="bloodGroupChecked_CheckedChanged"/>
+                &nbsp;<asp:CheckBox ID="isPaid" runat="server" Text="Paid" ForeColor="green" Enabled="false"/>
             </td>
         </tr>
           <tr>
