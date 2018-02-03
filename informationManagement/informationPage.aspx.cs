@@ -26,7 +26,7 @@ namespace informationManagement
                 save.Enabled = false;
                 update.Enabled = true;
                 update.Visible = true;
-                String select = "select Name,Class, Section, Department, Gender, Roll, Shift, Nationality, Office_Phone, Title,DateOfBirth, DateOfEmployment,Mobile_Number, Home_address, Image_Provided, Form_Filled, Blood_Group,  Blood_Group_Checked from Information where Id=" + Request.QueryString["id"];
+                String select = "select Name,Class, Section, Department, Gender, Roll, Shift, Nationality, Office_Phone, Title,DateOfBirth, DateOfEmployment,Mobile_Number, Home_address, Image_Provided, Form_Filled, Blood_Group,  Blood_Group_Checked, Is_Paid from Information where Id=" + Request.QueryString["id"];
                 SqlConnection conn = new SqlConnection(Information.connectionstring);
                 SqlCommand cmd = new SqlCommand(select, conn);
                 conn.Open();
@@ -44,8 +44,7 @@ namespace informationManagement
                     }
                     else
                     {
-                        
-                             department.Visible = false;
+                            department.Visible = false;
                             departmentLabel.Visible = false;
                     }
                     // section.SelectedItem.Text = reader["Section"].ToString();
@@ -65,6 +64,9 @@ namespace informationManagement
                     formFill.Checked = bool.Parse(reader["Form_Filled"].ToString());
                     bloodGroup.SelectedValue = bloodGroup.Items.FindByText(reader["Blood_Group"].ToString()).Value;
                     bloodGroupChecked.Checked = bool.Parse(reader["Blood_Group_Checked"].ToString());
+                    if (bloodGroupChecked.Checked == true)
+                        isPaid.Enabled = true;
+                    isPaid.Checked = bool.Parse(reader["Is_Paid"].ToString());
 
                 }
                 reader.Close();
@@ -144,7 +146,7 @@ namespace informationManagement
             {
 
                 string dept = (department.Visible == false) ? "" : department.SelectedItem.Text;
-                String insert = String.Format("insert into Information(Name,Class,Section,Department,Gender,Roll,Shift,Nationality,Office_Phone,Title,DateOfBirth,DateOfEmployment,Mobile_Number,Home_address,Created_By,Image_Provided,Form_Filled, Blood_Group, Blood_Group_Checked) OUTPUT INSERTED.ID values('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}',{14},'{15}','{16}', '{17}','{18}')", name.Text, clas.SelectedItem.Text, section.SelectedItem.Text, dept, gender.SelectedItem.Text, roll.Text, shift.SelectedItem.Text, national.Text, officephone.Text, title.SelectedItem.Text, dob.Text, doe.Text, mobile.Text, homeaddress.Text, Session["user_id"].ToString(), imageGiven.Checked, formFill.Checked, bloodGroup.SelectedItem.Text, bloodGroupChecked.Checked);
+                String insert = String.Format("insert into Information(Name,Class,Section,Department,Gender,Roll,Shift,Nationality,Office_Phone,Title,DateOfBirth,DateOfEmployment,Mobile_Number,Home_address,Created_By,Image_Provided,Form_Filled, Blood_Group, Blood_Group_Checked, Is_Paid) OUTPUT INSERTED.ID values('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}',{14},'{15}','{16}', '{17}','{18}', '{19}')", name.Text, clas.SelectedItem.Text, section.SelectedItem.Text, dept, gender.SelectedItem.Text, roll.Text, shift.SelectedItem.Text, national.Text, officephone.Text, title.SelectedItem.Text, dob.Text, doe.Text, mobile.Text, homeaddress.Text, Session["user_id"].ToString(), imageGiven.Checked, formFill.Checked, bloodGroup.SelectedItem.Text, bloodGroupChecked.Checked, isPaid.Checked);
 
                 SqlConnection conn = new SqlConnection(Information.connectionstring);
                 SqlCommand cmd = new SqlCommand(insert, conn);
@@ -215,6 +217,7 @@ namespace informationManagement
             formFill.Checked = false;
             bloodGroup.SelectedIndex = 0;
             bloodGroupChecked.Checked = false;
+            isPaid.Checked = false;
             save.Visible = true;
             save.Enabled = true;
             update.Visible = false;
@@ -241,7 +244,6 @@ namespace informationManagement
             }
             else
             {
-                
                 department.Visible = false;
                 departmentLabel.Visible = false;
             }
@@ -313,7 +315,7 @@ namespace informationManagement
             {
                 string dept = (department.Visible == false) ? "" : department.SelectedItem.Text;
                 string date = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
-                String update = String.Format("update Information set Name='{0}',Class='{1}',Section='{2}',Department='{3}',Gender='{4}',Roll='{5}',Shift='{6}',Nationality='{7}',Office_Phone='{8}',Title='{9}',DateOfBirth='{10}',DateOfEmployment='{11}',Mobile_Number='{12}',Home_address='{13}',Updated_By='{14}' ,Updated_Date='{15}',Image_Provided='{16}',Form_Filled='{17}', Blood_group='{18}',  Blood_Group_Checked='{19}' where Id={20}", name.Text, clas.SelectedItem.Text, section.SelectedItem.Text, dept, gender.SelectedItem.Text, roll.Text, shift.SelectedItem.Text, national.Text, officephone.Text, title.SelectedItem.Text, dob.Text, doe.Text, mobile.Text, homeaddress.Text, Session["user_id"].ToString(), date, imageGiven.Checked, formFill.Checked, bloodGroup.SelectedItem.Text, bloodGroupChecked.Checked, Request.QueryString["id"]);
+                String update = String.Format("update Information set Name='{0}',Class='{1}',Section='{2}',Department='{3}',Gender='{4}',Roll='{5}',Shift='{6}',Nationality='{7}',Office_Phone='{8}',Title='{9}',DateOfBirth='{10}',DateOfEmployment='{11}',Mobile_Number='{12}',Home_address='{13}',Updated_By='{14}' ,Updated_Date='{15}',Image_Provided='{16}',Form_Filled='{17}', Blood_group='{18}',  Blood_Group_Checked='{19}', Is_Paid='{20}' where Id={21}", name.Text, clas.SelectedItem.Text, section.SelectedItem.Text, dept, gender.SelectedItem.Text, roll.Text, shift.SelectedItem.Text, national.Text, officephone.Text, title.SelectedItem.Text, dob.Text, doe.Text, mobile.Text, homeaddress.Text, Session["user_id"].ToString(), date, imageGiven.Checked, formFill.Checked, bloodGroup.SelectedItem.Text, bloodGroupChecked.Checked, isPaid.Checked, Request.QueryString["id"]);
 
                 SqlConnection conn = new SqlConnection(Information.connectionstring);
                 SqlCommand cmd = new SqlCommand(update, conn);
@@ -340,6 +342,20 @@ namespace informationManagement
                 SqlConnection.ClearPool(conn);
             }
 
+        }
+
+        protected void bloodGroupChecked_CheckedChanged(object sender, EventArgs e)
+        {
+            if(bloodGroupChecked.Checked == true)
+            {
+                isPaid.Enabled = true;
+            }
+            else
+            {
+                isPaid.Enabled = false;
+                isPaid.Checked = false;
+
+            }
         }
     }
 }

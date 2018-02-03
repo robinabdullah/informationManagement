@@ -109,7 +109,16 @@ namespace informationManagement {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox bloodGroupChecked;
+        protected global::System.Web.UI.WebControls.DropDownList bloodGroupChecked;
+        
+        /// <summary>
+        /// paymentType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList paymentType;
         
         /// <summary>
         /// imageProvided control.

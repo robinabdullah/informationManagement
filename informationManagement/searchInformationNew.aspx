@@ -10,7 +10,7 @@
     <form id="form1" runat="server">
         <div>
             <asp:Label ID="username" runat="server" Font-Bold="True" Font-Size="Larger"></asp:Label>
-            <asp:Button ID="logout" runat="server" Text="Log Out" OnClick="logout_Click" />
+            <asp:Button ID="logout" runat="server" Text="Log Out" OnClick="logout_Click" UseSubmitBehavior="False" />
             <table>
                 <tr>
                     <td>
@@ -107,9 +107,17 @@
                 <tr>
                     <td>Blood Group Tested</td>
                     <td>
-                        
-                        <asp:CheckBox ID="bloodGroupChecked" runat="server" Text="Tested" />
-
+                        <asp:DropDownList ID="bloodGroupChecked" AutoPostBack="true" runat="server" OnSelectedIndexChanged="bloodGroupChecked_CheckedChanged" >
+                            <asp:ListItem Value="Select">Select Tested</asp:ListItem>
+                            <asp:ListItem Value="1">Yes</asp:ListItem>
+                            <asp:ListItem Value="0">No</asp:ListItem>
+                        </asp:DropDownList> &nbsp;|
+                        <%--<asp:CheckBox ID="bloodGroupChecked" runat="server" Text="Tested" AutoPostBack="true" OnCheckedChanged="bloodGroupChecked_CheckedChanged"/>--%>
+                        <asp:DropDownList ID="paymentType" runat="server" Enabled="false">
+                            <asp:ListItem Value="Select">Select Payment</asp:ListItem>
+                            <asp:ListItem Value="0">Due</asp:ListItem>
+                            <asp:ListItem Value="1">Paid</asp:ListItem>
+                        </asp:DropDownList>
                     </td>
                 </tr>
                 <tr>
