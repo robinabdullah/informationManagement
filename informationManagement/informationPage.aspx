@@ -206,7 +206,7 @@
         <tr>
             <td>Guardian Number</td>
             <td>
-                <asp:TextBox ID="mobile" runat="server" TextMode="Number"></asp:TextBox>
+                <asp:TextBox ID="mobile" runat="server"></asp:TextBox>
 
             </td>
         </tr>

@@ -130,7 +130,7 @@ namespace informationManagement
             {
                 msg.Text = "please enter valid DateOfEmployeement";
             }
-            else if (mobile.Text == "" || mobile.Text.Trim().Length != 11)
+            else if (mobile.Text == "") // || mobile.Text.Trim().Length != 11
             {
                 msg.Text = "please enter valid guardian number";
             }
@@ -299,7 +299,7 @@ namespace informationManagement
             {
                 msg.Text = "please enter valid DateOfEmployeement";
             }
-            else if (mobile.Text == "" || mobile.Text.Trim().Length != 11)
+            else if (mobile.Text == "") // || mobile.Text.Trim().Length != 11
             {
                 msg.Text = "please enter valid  guardian number";
             }
