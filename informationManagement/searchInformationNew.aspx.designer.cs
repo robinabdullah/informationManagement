@@ -94,6 +94,24 @@ namespace informationManagement {
         protected global::System.Web.UI.WebControls.DropDownList title;
         
         /// <summary>
+        /// gender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList gender;
+        
+        /// <summary>
+        /// department control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList department;
+        
+        /// <summary>
         /// bloodGroup control.
         /// </summary>
         /// <remarks>
@@ -139,6 +157,15 @@ namespace informationManagement {
         protected global::System.Web.UI.WebControls.CheckBox formFilled;
         
         /// <summary>
+        /// orderBy control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList orderBy;
+        
+        /// <summary>
         /// withTableData control.
         /// </summary>
         /// <remarks>
@@ -155,6 +182,15 @@ namespace informationManagement {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Button1;
+        
+        /// <summary>
+        /// download control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button download;
         
         /// <summary>
         /// reset control.

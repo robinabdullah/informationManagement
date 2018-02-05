@@ -86,6 +86,31 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>Gender</td>
+                    <td>
+
+                        <asp:DropDownList ID="gender" runat="server">
+                            <asp:ListItem Value="0">Select Gender</asp:ListItem>
+                            <asp:ListItem Value="1">Male</asp:ListItem>
+                            <asp:ListItem Value="2">Female</asp:ListItem>
+                        </asp:DropDownList>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>Department</td>
+                    <td>
+
+                        <asp:DropDownList ID="department" runat="server">
+                            <asp:ListItem Value="0">Select Department</asp:ListItem>
+                            <asp:ListItem Value="1">Science</asp:ListItem>
+                            <asp:ListItem Value="2">Commerce</asp:ListItem>
+                            <asp:ListItem Value="3">Arts</asp:ListItem>
+                        </asp:DropDownList>
+
+                    </td>
+                </tr>
+                <tr>
                     <td>Blood Group</td>
                     <td>
 
@@ -133,6 +158,24 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>Order By</td>
+                    <td>
+                        <asp:DropDownList ID="orderBy" runat="server">
+                            <asp:ListItem Value="Select">Select Order By</asp:ListItem>
+                            <asp:ListItem Value="Id">Id</asp:ListItem>
+                            <asp:ListItem Value="Name">Name</asp:ListItem>
+                            <asp:ListItem Value="Roll">Roll</asp:ListItem>
+                            <asp:ListItem Value="Roll, Name">Roll, Name</asp:ListItem>
+                            <asp:ListItem Value="Department">Department</asp:ListItem>
+                            <asp:ListItem Value="Gender">Gender</asp:ListItem>
+                            <asp:ListItem Value="Created_By">Created By</asp:ListItem>
+                            <asp:ListItem Value="Updated_By">Updated By</asp:ListItem>
+                            <asp:ListItem Value="Created_Date">Created Date</asp:ListItem>
+                            <asp:ListItem Value="Updated_Date">Updated Date</asp:ListItem>
+                        </asp:DropDownList>
+                    </td>
+                </tr>
+                <tr>
                     <td>Show Data</td>
                     <td>
                         <asp:CheckBox ID="withTableData" runat="server" Text="Show With Data" Font-Bold="true" ForeColor="Red" />
@@ -143,6 +186,7 @@
                     <td>
 
                         <asp:Button ID="Button1" runat="server" Text="Search" OnClick="searchButton1_Click" />
+                        <asp:Button ID="download" runat="server" Text="Download" OnClick="download_Click" Enabled="false"/>
                         <asp:Button ID="reset" runat="server" Text="Reset" OnClick="reset_Click" />
                         <a href="informationPage.aspx">Back</a> | <a href="searchInformation.aspx">Old Search Panel</a>
                     </td>
@@ -151,6 +195,7 @@
 
                 <tr>
                     <td>
+
                         <asp:Label ID="msg" runat="server" Font-Bold="True"></asp:Label>
 
                     </td>
