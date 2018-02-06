@@ -30,9 +30,9 @@ namespace informationManagement
             list.DataBind();
             String search;
             //string commonQuery = "select Information.id, Information.Name, Class, Section, Department, Gender, Roll, Shift, Title,Office_Phone as Personal_Number, DateofBirth, Mobile_Number as Guardian_Number,Home_Address, newLogin.name as Created_By,Created_Date, Updated_By,Updated_Date, Image_Provided, Form_Filled, Blood_Group, Blood_Group_Checked, Is_Paid as Paid, Deleted_By, Deleted_Date from Information, newLogin where created_by=newLogin.ID ";
-            string commonQuery = "select Information.id, Information.Name, Class, Section, Department, Gender, Cast(Roll as int) as Roll, Shift, Title,Office_Phone as Personal_No, DateofBirth as DOB, Mobile_Number as Guardian_No,Home_Address, newLogin.name as 'Created_By',Created_Date, Updated_By,Updated_Date, (Case When Image_Provided = 1 then 'Yes' Else '' End) As 'Image Provided', (Case When Form_Filled = 1 then 'Yes' Else '' End) As 'Form Filled' , Blood_Group, (Case When Blood_Group_Checked = 1 then 'Yes' Else '' End) As 'Blood Group Checked' , (Case When Is_Paid = 1 then 'Yes' Else '' End) As 'Paid' , Deleted_By, Deleted_Date from Information, newLogin where created_by = newLogin.ID";
+            string commonQuery = "select Information.id, Information.Name, Class, Section, Department, Gender, Cast(Roll as int) as Roll, Shift, Title,Office_Phone as Personal_No, DateofBirth as DOB, Mobile_Number as Guardian_No,Home_Address, newLogin.name as 'Created_By',Created_Date, Updated_By,Updated_Date, (Case When Image_Provided = 1 then 'Yes' Else '' End) As 'Image', (Case When Form_Filled = 1 then 'Yes' Else '' End) As 'Form' , Blood_Group, (Case When Blood_Group_Checked = 1 then 'Yes' Else '' End) As 'Blood Tested' , (Case When Is_Paid = 1 then 'Yes' Else '' End) As 'Paid'  from Information, newLogin where created_by = newLogin.ID and Is_Deleted = 0";//, Deleted_By, Deleted_Date
 
-            string countQuery = "select count(id) as count from information where 1 = 1 ";
+            string countQuery = "select count(id) as count from information where 1 = 1 and Is_Deleted = 0 ";
 
             if (id.Text.Trim() != "")
             {
@@ -48,7 +48,7 @@ namespace informationManagement
                 string selectedDepartment = department.SelectedIndex == 0 ? "" : " and department='" + department.SelectedItem.Text + "'";
                 string selectedTitle = title.SelectedIndex == 0 ? "" : " and title='" + title.SelectedItem.Text + "'";
                 string selectedBloodGroup = bloodGroup.SelectedIndex == 0 ? "" : " and Blood_Group='" + bloodGroup.SelectedItem.Text + "'";
-                string selectedBloodGroupChecked = bloodGroupChecked.SelectedIndex == 0 ? "" : " and Blood_Group != 'N/A' and Blood_Group_Checked=" + bloodGroupChecked.SelectedValue;
+                string selectedBloodGroupChecked = bloodGroupChecked.SelectedIndex == 0 ? "" : " and Blood_Group_Checked=" + bloodGroupChecked.SelectedValue;
                 string selectedImageProvided = imageProvided.Checked == false ? "" : " and Image_Provided=1" ;
                 string selectedFormFilled = formFilled.Checked == false ? "" : " and Form_Filled=1" ;
                 string selectedPaymentType = paymentType.SelectedIndex == 0 ? "" : " and Is_paid=" + paymentType.SelectedValue;
