@@ -21,7 +21,7 @@ namespace informationManagement
                 if (Session["role"].ToString() == "admin")
                 {
                     ///per user count
-                    String insert = "select newLogin.name,count(Created_By) AS Entry from information, newLogin where Created_By=newLogin.Id group by rollup(newLogin.name)";
+                    String insert = "select newLogin.name,count(Created_By) AS Entry from information, newLogin where Created_By=newLogin.Id and Is_Deleted = 0 group by rollup(newLogin.name)";
 
                     SqlConnection conn = new SqlConnection(Information.connectionstring);
                     SqlCommand cmd = new SqlCommand(insert, conn);
@@ -32,7 +32,7 @@ namespace informationManagement
                     conn.Close();
 
                     ///per Class Count
-                    insert = "select class,count(Id) AS Entry from information group by rollup(class)";
+                    insert = "select class,count(Id) AS Entry from information where Is_Deleted = 0 group by rollup(class)";
 
                     conn = new SqlConnection(Information.connectionstring);
                     cmd = new SqlCommand(insert, conn);
@@ -43,7 +43,7 @@ namespace informationManagement
                     conn.Close();
 
                     ///per title
-                    insert = "select Title,count(Title) as EntryCount from Information group by rollup(Title)";
+                    insert = "select Title,count(Title) as EntryCount from Information where Is_Deleted = 0 group by rollup(Title)";
                     conn = new SqlConnection(Information.connectionstring);
                     cmd = new SqlCommand(insert, conn);
                     conn.Open();
@@ -53,7 +53,7 @@ namespace informationManagement
                     conn.Close();
 
                     ///per shift count
-                    insert = "select Shift,count(Shift) as EntryCount from Information group by rollup(Shift)";
+                    insert = "select Shift,count(Shift) as EntryCount from Information where Is_Deleted = 0 group by rollup(Shift)";
                     conn = new SqlConnection(Information.connectionstring);
                     cmd = new SqlCommand(insert, conn);
                     conn.Open();
@@ -63,7 +63,7 @@ namespace informationManagement
                     conn.Close();
 
                     ///per blood group count
-                    insert = "select Blood_Group,count(Blood_Group) as EntryCount from Information group by rollup(Blood_Group)";
+                    insert = "select Blood_Group,count(Blood_Group) as EntryCount from Information where Is_Deleted = 0 group by rollup(Blood_Group)";
                     conn = new SqlConnection(Information.connectionstring);
                     cmd = new SqlCommand(insert, conn);
                     conn.Open();
@@ -80,7 +80,7 @@ namespace informationManagement
                     + "(SELECT COUNT(id) FROM information WHERE blood_group = 'N/A' ) as 'Not Tested',"
                     + "(SELECT COUNT(id) FROM information WHERE blood_group != 'N/A' and Blood_Group_Checked = 1 and is_paid=1) as 'Paid',"
                     + "(SELECT COUNT(id) FROM information WHERE blood_group != 'N/A' and Blood_Group_Checked = 1 and is_paid=0) as 'Due'"
-                    + "FROM information; ";
+                    + "FROM information where  Is_Deleted = 0; ";
                     conn = new SqlConnection(Information.connectionstring);
                     cmd = new SqlCommand(insert, conn);
                     conn.Open();
