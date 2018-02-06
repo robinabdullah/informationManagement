@@ -205,7 +205,8 @@
             </table>
             <asp:GridView ID="list" runat="server">
                 <Columns>
-                    <asp:HyperLinkField DataNavigateUrlFields="ID" DataNavigateUrlFormatString="/informationPage.aspx?id={0}" DataTextField="ID" DataTextFormatString="{0}" HeaderText="Edit" />
+                    <asp:HyperLinkField DataNavigateUrlFields="ID" DataNavigateUrlFormatString="/informationPage.aspx?id={0}" DataTextField="" DataTextFormatString="{0}" HeaderText="Edit" Text="Edit"/>
+                    <asp:HyperLinkField DataNavigateUrlFields="ID" DataNavigateUrlFormatString="/informationPage.aspx?deleteID={0}" DataTextField="" DataTextFormatString="{0}" HeaderText="Delete" Text="Delete"/>
                 </Columns>
 
             </asp:GridView>

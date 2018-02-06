@@ -20,20 +20,31 @@ namespace informationManagement
             {
                 username.Text = Session["user_name"].ToString();
             }
-           if(Request.QueryString["id"] != null && IsPostBack == false && Session["Role"].ToString() == "admin")//edit link
+
+            if(IsPostBack == false)
+                editDelete();
+
+          
+
+            
+        }
+        private void editDelete()
+        {
+            //edit
+            if (Request.QueryString["id"] != null && Session["Role"].ToString() == "admin")//edit link
             {
                 save.Visible = false;
                 save.Enabled = false;
                 update.Enabled = true;
                 update.Visible = true;
-                String select = "select Name,Class, Section, Department, Gender, Roll, Shift, Nationality, Office_Phone, Title,DateOfBirth, DateOfEmployment,Mobile_Number, Home_address, Image_Provided, Form_Filled, Blood_Group,  Blood_Group_Checked, Is_Paid from Information where Id=" + Request.QueryString["id"];
+                String select = "select Name,Class, Section, Department, Gender, Roll, Shift, Nationality, Office_Phone, Title,DateOfBirth, DateOfEmployment,Mobile_Number, Home_address, Image_Provided, Form_Filled, Blood_Group,  Blood_Group_Checked, Is_Paid from Information where Is_Deleted = 0 and Id=" + Request.QueryString["id"];
                 SqlConnection conn = new SqlConnection(Information.connectionstring);
                 SqlCommand cmd = new SqlCommand(select, conn);
                 conn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
-                while(reader.Read())
+                while (reader.Read())
                 {
-                   
+
                     name.Text = reader["Name"].ToString();
                     clas.SelectedValue = clas.Items.FindByText(reader["Class"].ToString()).Value;
                     if (clas.SelectedItem.Text == "Class 9" || clas.SelectedItem.Text == "Class 10")
@@ -44,8 +55,8 @@ namespace informationManagement
                     }
                     else
                     {
-                            department.Visible = false;
-                            departmentLabel.Visible = false;
+                        department.Visible = false;
+                        departmentLabel.Visible = false;
                     }
                     // section.SelectedItem.Text = reader["Section"].ToString();
                     section.SelectedValue = section.Items.FindByText(reader["Section"].ToString()).Value;
@@ -75,9 +86,60 @@ namespace informationManagement
                 SqlConnection.ClearPool(conn);
 
             }
-          
+            else if(Request.QueryString["deleteID"] != null && Session["Role"].ToString() == "admin") //delete
+            {
+                save.Visible = false;
+                save.Enabled = false;
+                delete.Enabled = true;
+                delete.Visible = true;
+                String select = "select Name,Class, Section, Department, Gender, Roll, Shift, Nationality, Office_Phone, Title,DateOfBirth, DateOfEmployment,Mobile_Number, Home_address, Image_Provided, Form_Filled, Blood_Group,  Blood_Group_Checked, Is_Paid from Information where Is_Deleted = 0 and Id=" + Request.QueryString["deleteID"];
+                SqlConnection conn = new SqlConnection(Information.connectionstring);
+                SqlCommand cmd = new SqlCommand(select, conn);
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
 
-            
+                    name.Text = reader["Name"].ToString();
+                    clas.SelectedValue = clas.Items.FindByText(reader["Class"].ToString()).Value;
+                    if (clas.SelectedItem.Text == "Class 9" || clas.SelectedItem.Text == "Class 10")
+                    {
+                        departmentLabel.Visible = true;
+                        department.Visible = true;
+                        department.SelectedValue = department.Items.FindByText(reader["Department"].ToString()).Value;
+                    }
+                    else
+                    {
+                        department.Visible = false;
+                        departmentLabel.Visible = false;
+                    }
+                    // section.SelectedItem.Text = reader["Section"].ToString();
+                    section.SelectedValue = section.Items.FindByText(reader["Section"].ToString()).Value;
+                    // department.SelectedItem.Text = reader[3].ToString();
+                    gender.SelectedValue = gender.Items.FindByText(reader["Gender"].ToString()).Value;
+                    roll.Text = reader["Roll"].ToString();
+                    shift.SelectedValue = shift.Items.FindByText(reader["Shift"].ToString()).Value;
+                    national.Text = reader["Nationality"].ToString();
+                    officephone.Text = reader["Office_Phone"].ToString();
+                    title.SelectedValue = title.Items.FindByText(reader["Title"].ToString()).Value;
+                    dob.Text = reader["DateOfBirth"].ToString();
+                    doe.Text = reader["DateOfEmployment"].ToString();
+                    mobile.Text = reader["Mobile_Number"].ToString();
+                    homeaddress.Text = reader["Home_address"].ToString();
+                    imageGiven.Checked = bool.Parse(reader["Image_Provided"].ToString());
+                    formFill.Checked = bool.Parse(reader["Form_Filled"].ToString());
+                    bloodGroup.SelectedValue = bloodGroup.Items.FindByText(reader["Blood_Group"].ToString()).Value;
+                    bloodGroupChecked.Checked = bool.Parse(reader["Blood_Group_Checked"].ToString());
+                    if (bloodGroupChecked.Checked == true)
+                        isPaid.Enabled = true;
+                    isPaid.Checked = bool.Parse(reader["Is_Paid"].ToString());
+
+                }
+                reader.Close();
+                conn.Close();
+                conn.Dispose();
+                SqlConnection.ClearPool(conn);
+            }
         }
 
         protected void SaveButton1_Click(object sender, EventArgs e)
@@ -315,7 +377,7 @@ namespace informationManagement
             {
                 string dept = (department.Visible == false) ? "" : department.SelectedItem.Text;
                 string date = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
-                String update = String.Format("update Information set Name='{0}',Class='{1}',Section='{2}',Department='{3}',Gender='{4}',Roll='{5}',Shift='{6}',Nationality='{7}',Office_Phone='{8}',Title='{9}',DateOfBirth='{10}',DateOfEmployment='{11}',Mobile_Number='{12}',Home_address='{13}',Updated_By='{14}' ,Updated_Date='{15}',Image_Provided='{16}',Form_Filled='{17}', Blood_group='{18}',  Blood_Group_Checked='{19}', Is_Paid='{20}' where Id={21}", name.Text, clas.SelectedItem.Text, section.SelectedItem.Text, dept, gender.SelectedItem.Text, roll.Text, shift.SelectedItem.Text, national.Text, officephone.Text, title.SelectedItem.Text, dob.Text, doe.Text, mobile.Text, homeaddress.Text, Session["user_id"].ToString(), date, imageGiven.Checked, formFill.Checked, bloodGroup.SelectedItem.Text, bloodGroupChecked.Checked, isPaid.Checked, Request.QueryString["id"]);
+                String update = String.Format("update Information set Name='{0}',Class='{1}',Section='{2}',Department='{3}',Gender='{4}',Roll='{5}',Shift='{6}',Nationality='{7}',Office_Phone='{8}',Title='{9}',DateOfBirth='{10}',DateOfEmployment='{11}',Mobile_Number='{12}',Home_address='{13}',Updated_By='{14}' ,Updated_Date='{15}',Image_Provided='{16}',Form_Filled='{17}', Blood_group='{18}',  Blood_Group_Checked='{19}', Is_Paid='{20}' where Is_Deleted = 0 and Id={21}", name.Text, clas.SelectedItem.Text, section.SelectedItem.Text, dept, gender.SelectedItem.Text, roll.Text, shift.SelectedItem.Text, national.Text, officephone.Text, title.SelectedItem.Text, dob.Text, doe.Text, mobile.Text, homeaddress.Text, Session["user_id"].ToString(), date, imageGiven.Checked, formFill.Checked, bloodGroup.SelectedItem.Text, bloodGroupChecked.Checked, isPaid.Checked, Request.QueryString["id"]);
 
                 SqlConnection conn = new SqlConnection(Information.connectionstring);
                 SqlCommand cmd = new SqlCommand(update, conn);
@@ -343,7 +405,35 @@ namespace informationManagement
             }
 
         }
+        protected void delete_Click(object sender, EventArgs e)
+        {
+            string date = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+            String update = String.Format("update Information set is_deleted = 1, deleted_by={0}, deleted_date='{1}' where Id={2}", Session["user_id"].ToString(), date, Request.QueryString["deleteID"]);
 
+            SqlConnection conn = new SqlConnection(Information.connectionstring);
+            SqlCommand cmd = new SqlCommand(update, conn);
+            conn.Open();
+
+            int a = cmd.ExecuteNonQuery();
+            if (a > 0)
+            {
+                msg.Text = "successfully deleted";
+                Clearall();
+                this.delete.Enabled = false;
+                this.delete.Visible = false;
+                this.save.Enabled = true;
+                this.save.Visible = true;
+
+            }
+            else
+            {
+                msg.Text = "delete failed";
+            }
+
+            conn.Close();
+            conn.Dispose();
+            SqlConnection.ClearPool(conn);
+        }
         protected void bloodGroupChecked_CheckedChanged(object sender, EventArgs e)
         {
             if(bloodGroupChecked.Checked == true)
@@ -357,5 +447,7 @@ namespace informationManagement
 
             }
         }
+
+       
     }
 }

@@ -255,6 +255,7 @@
              <td>
                  <asp:Button ID="save" runat="server" Text="Save" OnClick="SaveButton1_Click" />
                  <asp:Button ID="update" runat="server" Text="Update" Visible="false" OnClick="update_Click"/>
+                 <asp:Button ID="delete" runat="server" Text="Delete" Visible="false" OnClientClick="return confirm('Are you sure?')" OnClick="delete_Click"/>
                  <asp:Button ID="reset" runat="server" Text="Reset" OnClick="resetButton3_Click" />
                  <a href="searchInformation.aspx">Old Search</a> | <a href="searchInformationNew.aspx">New Search </a>
                  <%--<asp:Button ID="Button4" runat="server" Text="Search" OnClick="searchButton4_Click" />--%>
