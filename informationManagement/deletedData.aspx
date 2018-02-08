@@ -9,12 +9,20 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <asp:GridView ID="deletedList" runat="server" DataSourceID="SqlDataSource1"></asp:GridView>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:POSNew12ConnectionString %>" SelectCommand="SELECT [Id], [Class], [Name], [Section], [Department], [Gender], [Roll], [Shift], [DateOfBirth], [Created_By], [Created_Date], [Updated_By], [Updated_Date], [Deleted_By], [Deleted_Date], [Image_Provided], [Form_Filled], [Blood_Group], [Blood_Group_Checked], [Is_Paid], [Is_Deleted] FROM [Information] WHERE ([Is_Deleted] &lt;&gt; @Is_Deleted)">
-            <SelectParameters>
-                <asp:Parameter DefaultValue="false" Name="Is_Deleted" Type="boolean" />
-            </SelectParameters>
-        </asp:SqlDataSource>
+      
+        <asp:Label ID="username" runat="server" Font-Bold="True" Font-Size="Larger"></asp:Label>
+            <asp:Button ID="logout" runat="server" Text="Log Out" OnClick="logout_Click" UseSubmitBehavior="False" />
+                <h2> Show Delete Data</h2>
+            
+            <asp:GridView ID="delet" runat="server">
+                <Columns>
+                    <asp:HyperLinkField DataNavigateUrlFields="ID" DataNavigateUrlFormatString="/deletedData.aspx?undodelete={0}" DataTextFormatString="{0}" HeaderText="Undo Delete" Text="Undo Delete" />
+                </Columns>
+                </asp:GridView>
+        <asp:Label ID="msg" runat="server" Text=""></asp:Label>
+          
+
+      
     </div>
     </form>
 </body>
