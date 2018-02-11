@@ -12,14 +12,6 @@ namespace informationManagement
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            // if()
-
-           
-
-            
-            
-
-
 
             if (Request.QueryString["id"] != null)//edit link
             {

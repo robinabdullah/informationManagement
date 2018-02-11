@@ -11,7 +11,12 @@ namespace informationManagement
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["user_name"] == null)
+            {
+                Response.Redirect("LoginPage.aspx");
+            }
+            else if (Session["role"].ToString() == "guest")
+                Response.Redirect("informationPage.aspx");
         }
     }
 }
