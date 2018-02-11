@@ -23,7 +23,7 @@ namespace informationManagement
 
             if (Request.QueryString["id"] != null)//edit link
             {
-                Image1.ImageUrl = Request.QueryString["id"] + ".jpg";
+                Image1.ImageUrl = "http://salahuddinahmedhighschool.com/student_images/" + Request.QueryString["id"] + ".jpg";
 
                 String select = "select Name,Class, Section, Department, Gender, Roll, Shift,Office_Phone, Nationality,DateOfBirth,DateOfEmployment,Mobile_Number,Blood_Group from Information where Is_Deleted = 0 and Id=" + Request.QueryString["id"];
                 SqlConnection conn = new SqlConnection(Information.connectionstring);
