@@ -13,20 +13,16 @@ namespace informationManagement
         {
             ///tenary operator
             ///
-            string clasify = "";
-            int value = -5;
 
-            if(value > 0)
+            if (Request.QueryString["SampleQuerySting"] != null)
             {
-                clasify = "positive value";
+                Response.Write(Request.QueryString["SampleQuerySting"]);
             }
             else
             {
-                clasify = "negative value";
-            }
+                Response.Write("no data found in SampleQuerySting");
 
-            clasify = (value > 0) ? "positive value" : "negative value";
-            Response.Write(clasify);
+            }
         }
     }
 }
