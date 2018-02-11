@@ -6,15 +6,15 @@
 <head runat="server">
     <title></title>
         <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="~/Contents/bootstrap.min.css" />
+<link rel="stylesheet" href="Contents/bootstrap.min.css" />
 
 <!-- Optional theme -->
-<link rel="stylesheet" href="~/Contents/bootstrap-theme.min.css" />
+<link rel="stylesheet" href="Contents/bootstrap-theme.min.css" />
 
 <!-- Latest compiled and minified JavaScript -->
-    <script src="~/Scripts/jquery-1.12.4.js"></script>
+    <script src="Scripts/jquery-1.12.4.js"></script>
 
-<script src="~/Scripts/bootstrap.min.js" ></script>
+<script src="Scripts/bootstrap.min.js" ></script>
     <%--<script src="http://www.bootply.com/bootply.js" type="text/javascript"></script>--%>
     <style>
         body{
