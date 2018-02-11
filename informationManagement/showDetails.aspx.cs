@@ -12,8 +12,7 @@ namespace informationManagement
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
-
+            
             if (Request.QueryString["id"] != null)//edit link
             {
                 Image1.ImageUrl = "http://salahuddinahmedhighschool.com/student_images/" + Request.QueryString["id"] + ".jpg";
