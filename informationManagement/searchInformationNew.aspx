@@ -209,6 +209,10 @@
                     <asp:HyperLinkField DataNavigateUrlFields="ID" DataNavigateUrlFormatString="/informationPage.aspx?id={0}" DataTextField="" DataTextFormatString="{0}" HeaderText="Edit" Text="Edit"/>
                     <asp:HyperLinkField DataNavigateUrlFields="ID" DataNavigateUrlFormatString="/informationPage.aspx?deleteID={0}" DataTextField="" DataTextFormatString="{0}" HeaderText="Delete" Text="Delete"/>
                   
+                      <asp:ImageField DataImageUrlField="ID" DataImageUrlFormatString="http://salahuddinahmedhighschool.com/student_images/{0}.jpg">
+                          <ControlStyle Height="70px" />
+                      </asp:ImageField>
+                  
                 </Columns>
 
             </asp:GridView>
