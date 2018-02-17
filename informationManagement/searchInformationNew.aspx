@@ -161,9 +161,9 @@
                     <td>Verified</td>
                     <td>
                         <asp:DropDownList ID="verified" runat="server">
-                            <asp:ListItem Value="0">Select</asp:ListItem>
+                            <asp:ListItem Value="Select">Select</asp:ListItem>
+                            <asp:ListItem Value="0">Not Verified</asp:ListItem>
                             <asp:ListItem Value="1">Verified </asp:ListItem>
-                            <asp:ListItem Value="2">Not Verified</asp:ListItem>
                         </asp:DropDownList>
                     </td>
                 </tr>
