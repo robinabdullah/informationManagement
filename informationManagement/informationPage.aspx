@@ -250,6 +250,32 @@
                 &nbsp;<asp:CheckBox ID="isPaid" runat="server" Text="Paid" ForeColor="green" Enabled="false"/>
             </td>
         </tr>
+        <tr>
+            <td>Verified</td>
+            <td>
+                <asp:CheckBox ID="IsVerified" runat="server" Text ="Verified" />
+
+            </td>
+        </tr>
+          <tr>
+            <td>Present_Status</td>
+            <td>
+                <asp:DropDownList ID="presentstatus" runat="server">
+                    <asp:ListItem Value="0">Unknown</asp:ListItem>
+                    <asp:ListItem Value="1">Printing </asp:ListItem>
+                    <asp:ListItem Value="2">Printed</asp:ListItem>
+                </asp:DropDownList>
+
+            </td>
+        </tr>
+          <tr>
+            <td>Remarks</td>
+            <td>
+                <asp:TextBox ID="remarks" runat="server"></asp:TextBox>
+
+            </td>
+        </tr>
+
           <tr>
              <td></td>
              <td>
