@@ -158,6 +158,30 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>Verified</td>
+                    <td>
+                        <asp:DropDownList ID="verified" runat="server">
+                            <asp:ListItem Value="0">Select</asp:ListItem>
+                            <asp:ListItem Value="1">Verified </asp:ListItem>
+                            <asp:ListItem Value="2">Not Verified</asp:ListItem>
+                        </asp:DropDownList>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Present Status
+                    </td>
+                    <td>
+                        <asp:DropDownList ID="presentstatus" runat="server">
+                            <asp:ListItem Value="0">Select Present Status</asp:ListItem>
+                            <asp:ListItem Value="Unknown">Unknown</asp:ListItem>
+                            <asp:ListItem Value="1">Printing </asp:ListItem>
+                            <asp:ListItem Value="2">Printed</asp:ListItem>
+                        </asp:DropDownList>
+                    </td>
+                
+                </tr>
+                <tr>
                     <td>Order By</td>
                     <td>
                         <asp:DropDownList ID="orderBy" runat="server">
@@ -209,7 +233,7 @@
                     <asp:HyperLinkField DataNavigateUrlFields="ID" DataNavigateUrlFormatString="/informationPage.aspx?id={0}" DataTextField="" DataTextFormatString="{0}" HeaderText="Edit" Text="Edit"/>
                     <asp:HyperLinkField DataNavigateUrlFields="ID" DataNavigateUrlFormatString="/informationPage.aspx?deleteID={0}" DataTextField="" DataTextFormatString="{0}" HeaderText="Delete" Text="Delete"/>
                   
-                      <asp:ImageField DataImageUrlField="ID" DataImageUrlFormatString="http://salahuddinahmedhighschool.com/student_images/{0}.jpg">
+                      <asp:ImageField DataImageUrlField="ID" DataImageUrlFormatString="http://salahuddinahmedhighschool.com/student_images/{0}.jpg" HeaderText="Image">
                           <ControlStyle Height="70px" />
                       </asp:ImageField>
                   

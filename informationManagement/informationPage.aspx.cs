@@ -37,7 +37,7 @@ namespace informationManagement
                 save.Enabled = false;
                 update.Enabled = true;
                 update.Visible = true;
-                String select = "select Name,Class, Section, Department, Gender, Roll, Shift, Nationality, Office_Phone, Title,DateOfBirth, DateOfEmployment,Mobile_Number, Home_address, Image_Provided, Form_Filled, Blood_Group,  Blood_Group_Checked, Is_Paid from Information where Is_Deleted = 0 and Id=" + Request.QueryString["id"];
+                String select = "select Name,Class, Section, Department, Gender, Roll, Shift, Nationality, Office_Phone, Title,DateOfBirth, DateOfEmployment,Mobile_Number, Home_address, Image_Provided, Form_Filled, Blood_Group,  Blood_Group_Checked, Is_Paid,Is_Verified,Present_Status,Remarks from Information where Is_Deleted = 0 and Id=" + Request.QueryString["id"];
                 SqlConnection conn = new SqlConnection(Information.connectionstring);
                 SqlCommand cmd = new SqlCommand(select, conn);
                 conn.Open();
@@ -78,7 +78,9 @@ namespace informationManagement
                     if (bloodGroupChecked.Checked == true)
                         isPaid.Enabled = true;
                     isPaid.Checked = bool.Parse(reader["Is_Paid"].ToString());
-
+                    IsVerified.Checked = bool.Parse(reader["Is_Verified"].ToString());
+                    presentstatus.SelectedValue = presentstatus.Items.FindByText(reader["Present_Status"].ToString()).Value;
+                    remarks.Text = reader["Remarks"].ToString();
                 }
                 reader.Close();
                 conn.Close();
@@ -92,7 +94,7 @@ namespace informationManagement
                 save.Enabled = false;
                 delete.Enabled = true;
                 delete.Visible = true;
-                String select = "select Name,Class, Section, Department, Gender, Roll, Shift, Nationality, Office_Phone, Title,DateOfBirth, DateOfEmployment,Mobile_Number, Home_address, Image_Provided, Form_Filled, Blood_Group,  Blood_Group_Checked, Is_Paid from Information where Is_Deleted = 0 and Id=" + Request.QueryString["deleteID"];
+                String select = "select Name,Class, Section, Department, Gender, Roll, Shift, Nationality, Office_Phone, Title,DateOfBirth, DateOfEmployment,Mobile_Number, Home_address, Image_Provided, Form_Filled, Blood_Group,  Blood_Group_Checked, Is_Paid,Is_Verified,Present_Status,Remarks  from Information where Is_Deleted = 0 and Id=" + Request.QueryString["deleteID"];
                 SqlConnection conn = new SqlConnection(Information.connectionstring);
                 SqlCommand cmd = new SqlCommand(select, conn);
                 conn.Open();
@@ -133,6 +135,9 @@ namespace informationManagement
                     if (bloodGroupChecked.Checked == true)
                         isPaid.Enabled = true;
                     isPaid.Checked = bool.Parse(reader["Is_Paid"].ToString());
+                    IsVerified.Checked = bool.Parse(reader["Is_Verified"].ToString());
+                    presentstatus.SelectedValue = title.Items.FindByText(reader["Present_Status"].ToString()).Value;
+                    remarks.Text = reader["Remarks"].ToString();
 
                 }
                 reader.Close();
@@ -204,11 +209,16 @@ namespace informationManagement
             {
                 msg.Text = "please enter valid blood group";
             }
+            else if (bloodGroup.SelectedIndex == 0)
+            {
+                msg.Text = "please enter valid blood group";
+            }
+          
             else
             {
 
                 string dept = (department.Visible == false) ? "" : department.SelectedItem.Text;
-                String insert = String.Format("insert into Information(Name,Class,Section,Department,Gender,Roll,Shift,Nationality,Office_Phone,Title,DateOfBirth,DateOfEmployment,Mobile_Number,Home_address,Created_By,Image_Provided,Form_Filled, Blood_Group, Blood_Group_Checked, Is_Paid) OUTPUT INSERTED.ID values('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}',{14},'{15}','{16}', '{17}','{18}', '{19}')", name.Text, clas.SelectedItem.Text, section.SelectedItem.Text, dept, gender.SelectedItem.Text, roll.Text, shift.SelectedItem.Text, national.Text, officephone.Text, title.SelectedItem.Text, dob.Text, doe.Text, mobile.Text, homeaddress.Text, Session["user_id"].ToString(), imageGiven.Checked, formFill.Checked, bloodGroup.SelectedItem.Text, bloodGroupChecked.Checked, isPaid.Checked);
+                String insert = String.Format("insert into Information(Name,Class,Section,Department,Gender,Roll,Shift,Nationality,Office_Phone,Title,DateOfBirth,DateOfEmployment,Mobile_Number,Home_address,Created_By,Image_Provided,Form_Filled, Blood_Group, Blood_Group_Checked, Is_Paid,Is_Verified,Present_Status,Remarks) OUTPUT INSERTED.ID values('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}',{14},'{15}','{16}', '{17}','{18}', '{19}','{20}','{21}','{22}')", name.Text, clas.SelectedItem.Text, section.SelectedItem.Text, dept, gender.SelectedItem.Text, roll.Text, shift.SelectedItem.Text, national.Text, officephone.Text, title.SelectedItem.Text, dob.Text, doe.Text, mobile.Text, homeaddress.Text, Session["user_id"].ToString(), imageGiven.Checked, formFill.Checked, bloodGroup.SelectedItem.Text, bloodGroupChecked.Checked, isPaid.Checked, IsVerified.Checked, presentstatus.SelectedItem.Text, remarks.Text);
 
                 SqlConnection conn = new SqlConnection(Information.connectionstring);
                 SqlCommand cmd = new SqlCommand(insert, conn);
@@ -280,6 +290,9 @@ namespace informationManagement
             bloodGroup.SelectedIndex = 0;
             bloodGroupChecked.Checked = false;
             isPaid.Checked = false;
+            IsVerified.Checked = false;
+            presentstatus.SelectedIndex = 0;
+            remarks.Text = "";
             save.Visible = true;
             save.Enabled = true;
             update.Visible = false;
@@ -377,7 +390,7 @@ namespace informationManagement
             {
                 string dept = (department.Visible == false) ? "" : department.SelectedItem.Text;
                 string date = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
-                String update = String.Format("update Information set Name='{0}',Class='{1}',Section='{2}',Department='{3}',Gender='{4}',Roll='{5}',Shift='{6}',Nationality='{7}',Office_Phone='{8}',Title='{9}',DateOfBirth='{10}',DateOfEmployment='{11}',Mobile_Number='{12}',Home_address='{13}',Updated_By='{14}' ,Updated_Date='{15}',Image_Provided='{16}',Form_Filled='{17}', Blood_group='{18}',  Blood_Group_Checked='{19}', Is_Paid='{20}' where Is_Deleted = 0 and Id={21}", name.Text, clas.SelectedItem.Text, section.SelectedItem.Text, dept, gender.SelectedItem.Text, roll.Text, shift.SelectedItem.Text, national.Text, officephone.Text, title.SelectedItem.Text, dob.Text, doe.Text, mobile.Text, homeaddress.Text, Session["user_id"].ToString(), date, imageGiven.Checked, formFill.Checked, bloodGroup.SelectedItem.Text, bloodGroupChecked.Checked, isPaid.Checked, Request.QueryString["id"]);
+                String update = String.Format("update Information set Name='{0}',Class='{1}',Section='{2}',Department='{3}',Gender='{4}',Roll='{5}',Shift='{6}',Nationality='{7}',Office_Phone='{8}',Title='{9}',DateOfBirth='{10}',DateOfEmployment='{11}',Mobile_Number='{12}',Home_address='{13}',Updated_By='{14}' ,Updated_Date='{15}',Image_Provided='{16}',Form_Filled='{17}', Blood_group='{18}',  Blood_Group_Checked='{19}', Is_Paid='{20}', Is_Verified='{21}',Present_Status='{22}',Remarks='{23}' where Is_Deleted = 0 and Id={24}", name.Text, clas.SelectedItem.Text, section.SelectedItem.Text, dept, gender.SelectedItem.Text, roll.Text, shift.SelectedItem.Text, national.Text, officephone.Text, title.SelectedItem.Text, dob.Text, doe.Text, mobile.Text, homeaddress.Text, Session["user_id"].ToString(), date, imageGiven.Checked, formFill.Checked, bloodGroup.SelectedItem.Text, bloodGroupChecked.Checked, isPaid.Checked, IsVerified.Checked, presentstatus.SelectedItem.Text, remarks.Text, Request.QueryString["id"]);
 
                 SqlConnection conn = new SqlConnection(Information.connectionstring);
                 SqlCommand cmd = new SqlCommand(update, conn);

@@ -30,7 +30,7 @@ namespace informationManagement
             list.DataBind();
             String search;
             //string commonQuery = "select Information.id, Information.Name, Class, Section, Department, Gender, Roll, Shift, Title,Office_Phone as Personal_Number, DateofBirth, Mobile_Number as Guardian_Number,Home_Address, newLogin.name as Created_By,Created_Date, Updated_By,Updated_Date, Image_Provided, Form_Filled, Blood_Group, Blood_Group_Checked, Is_Paid as Paid, Deleted_By, Deleted_Date from Information, newLogin where created_by=newLogin.ID ";
-            string commonQuery = "select Information.id, Information.Name, Class, Section, Department, Gender, Cast(Roll as int) as Roll, Shift, Title,Office_Phone as Personal_No, DateofBirth as DOB, Mobile_Number as Guardian_No,Home_Address, newLogin.name as 'Created_By',Created_Date, Updated_By,Updated_Date, (Case When Image_Provided = 1 then 'Yes' Else '' End) As 'Image', (Case When Form_Filled = 1 then 'Yes' Else '' End) As 'Form' , Blood_Group, (Case When Blood_Group_Checked = 1 then 'Yes' Else '' End) As 'Blood Tested' , (Case When Is_Paid = 1 then 'Yes' Else '' End) As 'Paid'  from Information, newLogin where created_by = newLogin.ID and Is_Deleted = 0";//, Deleted_By, Deleted_Date
+            string commonQuery = "select Information.id, Information.Name, Class, Section, Department, Gender, Cast(Roll as int) as Roll, Shift, Title,Office_Phone as Personal_No, DateofBirth as DOB, Mobile_Number as Guardian_No,Home_Address, newLogin.name as 'Created_By',Created_Date, Updated_By,Updated_Date, (Case When Image_Provided = 1 then 'Yes' Else '' End) As 'Image', (Case When Form_Filled = 1 then 'Yes' Else '' End) As 'Form' , Blood_Group, (Case When Blood_Group_Checked = 1 then 'Yes' Else '' End) As 'Blood Tested' , (Case When Is_Paid = 1 then 'Yes' Else '' End) As 'Paid', (Case When Is_Verified = 1 then 'Yes' Else '' End) As 'Verified', Present_Status, Remarks  from Information, newLogin where created_by = newLogin.ID and Is_Deleted = 0";//, Deleted_By, Deleted_Date
 
             string countQuery = "select count(id) as count from information where 1 = 1 and Is_Deleted = 0 ";
 
@@ -52,12 +52,14 @@ namespace informationManagement
                 string selectedImageProvided = imageProvided.Checked == false ? "" : " and Image_Provided=1" ;
                 string selectedFormFilled = formFilled.Checked == false ? "" : " and Form_Filled=1" ;
                 string selectedPaymentType = paymentType.SelectedIndex == 0 ? "" : " and Is_paid=" + paymentType.SelectedValue;
+                string selectedVerified = verified.SelectedIndex == 0 ? "" : " and Is_verified=" + verified.SelectedValue;
+                string selectedPresentStatus = presentstatus.SelectedIndex == 0 ? "" : " and Present_Status=" + presentstatus.SelectedValue;
 
                 string orderByColumns = orderBy.SelectedIndex == 0 ? "" : " order by " + orderBy.SelectedValue;
                 if (withTableData.Checked == true || orderByColumns != "")
-                    search = commonQuery + selectedOfficeMobile + selectedMobileNo + selectedClass + selectedShift + selectedTitle+ selectedGender +selectedDepartment + selectedBloodGroup + selectedBloodGroupChecked + selectedPaymentType + selectedImageProvided + selectedFormFilled + orderByColumns;
+                    search = commonQuery + selectedOfficeMobile + selectedMobileNo + selectedClass + selectedShift + selectedTitle+ selectedGender +selectedDepartment + selectedBloodGroup + selectedBloodGroupChecked + selectedPaymentType + selectedImageProvided + selectedFormFilled + selectedVerified + selectedPresentStatus + orderByColumns;
                 else
-                    search = countQuery + selectedOfficeMobile + selectedMobileNo + selectedClass + selectedShift + selectedTitle + selectedGender + selectedDepartment + selectedBloodGroup + selectedBloodGroupChecked + selectedPaymentType + selectedImageProvided + selectedFormFilled + orderByColumns;
+                    search = countQuery + selectedOfficeMobile + selectedMobileNo + selectedClass + selectedShift + selectedTitle + selectedGender + selectedDepartment + selectedBloodGroup + selectedBloodGroupChecked + selectedPaymentType + selectedImageProvided + selectedFormFilled + selectedVerified + selectedPresentStatus + orderByColumns;
 
             }
             
@@ -124,6 +126,8 @@ namespace informationManagement
             bloodGroup.SelectedIndex = 0;
             bloodGroupChecked.SelectedIndex = 0;
             paymentType.SelectedIndex = 0;
+            verified.SelectedIndex = 0;
+            presentstatus.SelectedIndex = 0;
             paymentType.Enabled = false;
             imageProvided.Checked = false;
             formFilled.Checked = false;
