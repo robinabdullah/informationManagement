@@ -53,7 +53,7 @@ namespace informationManagement
                 string selectedFormFilled = formFilled.Checked == false ? "" : " and Form_Filled=1" ;
                 string selectedPaymentType = paymentType.SelectedIndex == 0 ? "" : " and Is_paid=" + paymentType.SelectedValue;
                 string selectedVerified = verified.SelectedIndex == 0 ? "" : " and Is_verified=" + verified.SelectedValue;
-                string selectedPresentStatus = presentstatus.SelectedIndex == 0 ? "" : " and Present_Status='" + presentstatus.SelectedValue + "'";
+                string selectedPresentStatus = presentstatus.SelectedIndex == 0 ? "" : " and Present_Status='" + presentstatus.SelectedItem.Text + "'";
 
                 string orderByColumns = orderBy.SelectedIndex == 0 ? "" : " order by " + orderBy.SelectedValue;
                 if (withTableData.Checked == true || orderByColumns != "")
