@@ -5,12 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-    <style type="text/css">
-        .auto-style1 {
-            margin-right: 1023px;
-        }
-    </style>
-</head>
+    </head>
 <body>
     <form id="form1" runat="server">
         <a href="informationPage.aspx" style="display:block">Back To Infomation Page</a>
@@ -40,11 +35,11 @@
         <asp:GridView ID="bloodGroupSummary" runat="server"></asp:GridView>
     </div>
          <div style="display:inline-table;margin-right:30px">
-        <h2>Present_Status</h2>
+        <h2>Present Status</h2>
         <asp:GridView ID="presentstatus" runat="server"></asp:GridView>
     </div>
          <div style="display:inline-table;margin-right:30px">
-        <h2>Is_Verified</h2>
+        <h2>Verified List</h2>
         <asp:GridView ID="varified" runat="server"></asp:GridView>
     </div>
     </form>

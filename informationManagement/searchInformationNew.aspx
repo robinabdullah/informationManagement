@@ -175,8 +175,11 @@
                         <asp:DropDownList ID="presentstatus" runat="server">
                             <asp:ListItem Value="0">Select Present Status</asp:ListItem>
                             <asp:ListItem Value="Unknown">Unknown</asp:ListItem>
-                            <asp:ListItem Value="1">Printing </asp:ListItem>
+                            <asp:ListItem Value="1">Printing</asp:ListItem>
                             <asp:ListItem Value="2">Printed</asp:ListItem>
+                            <asp:ListItem Value="3">Handed Over</asp:ListItem>
+                            <asp:ListItem Value="4">Re-Print Needed</asp:ListItem>
+                            <asp:ListItem Value="6">Lost</asp:ListItem>
                         </asp:DropDownList>
                     </td>
                 
