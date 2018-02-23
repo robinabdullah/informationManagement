@@ -136,7 +136,7 @@ namespace informationManagement
                         isPaid.Enabled = true;
                     isPaid.Checked = bool.Parse(reader["Is_Paid"].ToString());
                     IsVerified.Checked = bool.Parse(reader["Is_Verified"].ToString());
-                    presentstatus.SelectedValue = title.Items.FindByText(reader["Present_Status"].ToString()).Value;
+                    presentstatus.SelectedValue = presentstatus.Items.FindByText(reader["Present_Status"].ToString()).Value;
                     remarks.Text = reader["Remarks"].ToString();
 
                 }
