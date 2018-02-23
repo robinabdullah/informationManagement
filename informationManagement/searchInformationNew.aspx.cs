@@ -21,7 +21,7 @@ namespace informationManagement
                 Response.Redirect("informationPage.aspx");
             else
                 username.Text = Session["user_name"].ToString();
-    }
+        }
 
         protected void searchButton1_Click(object sender, EventArgs e)
         {
@@ -56,7 +56,7 @@ namespace informationManagement
                 string selectedPresentStatus = presentstatus.SelectedIndex == 0 ? "" : " and Present_Status='" + presentstatus.SelectedItem.Text + "'";
 
                 string orderByColumns = orderBy.SelectedIndex == 0 ? "" : " order by " + orderBy.SelectedValue;
-                if (withTableData.Checked == true || orderByColumns != "")
+                if (withTableData.Checked == true || withTableDataNImage.Checked == true || orderByColumns != "")
                     search = commonQuery + selectedOfficeMobile + selectedMobileNo + selectedClass + selectedShift + selectedTitle+ selectedGender +selectedDepartment + selectedBloodGroup + selectedBloodGroupChecked + selectedPaymentType + selectedImageProvided + selectedFormFilled + selectedVerified + selectedPresentStatus + orderByColumns;
                 else
                     search = countQuery + selectedOfficeMobile + selectedMobileNo + selectedClass + selectedShift + selectedTitle + selectedGender + selectedDepartment + selectedBloodGroup + selectedBloodGroupChecked + selectedPaymentType + selectedImageProvided + selectedFormFilled + selectedVerified + selectedPresentStatus + orderByColumns;
@@ -67,11 +67,17 @@ namespace informationManagement
             SqlCommand cmd = new SqlCommand(search, conn);
             conn.Open();
             SqlDataReader reader = null;
-            if (withTableData.Checked == true || id.Text.Trim() != "" || orderBy.SelectedIndex != 0)
+            if (withTableData.Checked == true || withTableDataNImage.Checked == true || id.Text.Trim() != "" || orderBy.SelectedIndex != 0)
             {
+                if (withTableDataNImage.Checked == false)
+                    list.Columns[3].Visible = false;
+                else
+                    list.Columns[3].Visible = true;
+
                 reader = cmd.ExecuteReader();
                 list.DataSource = reader;
                 list.DataBind();
+                
                 msg.Text = list.Rows.Count + " records found";
                 reader.Close();
                 download.Enabled = true;
@@ -84,6 +90,7 @@ namespace informationManagement
             }
 
             withTableData.Checked = false;
+            withTableDataNImage.Checked = false;
             conn.Close();
             conn.Dispose();
             SqlConnection.ClearPool(conn);
@@ -132,8 +139,10 @@ namespace informationManagement
             imageProvided.Checked = false;
             formFilled.Checked = false;
             withTableData.Checked = false;
+            withTableDataNImage.Checked = false;
             list.DataSource = null;
             list.DataBind();
+            list.Columns[3].Visible = true;
             download.Enabled = false;
             orderBy.SelectedIndex = 0;
             msg.Text = "";
@@ -146,6 +155,7 @@ namespace informationManagement
         }
         protected void download_Click(object sender, EventArgs e)
         {
+            list.Columns[3].Visible = false;//for download disabling the image column
             if (list.Rows.Count > 0)
             {
                 Response.Clear();
@@ -165,6 +175,19 @@ namespace informationManagement
                 Response.Write(strwritter.ToString());
                 Response.End();
             }
+        }
+
+        protected void withTableData_CheckedChanged(object sender, EventArgs e)
+        {
+            if (withTableData.Checked == true)
+                withTableDataNImage.Checked = false;
+
+        }
+
+        protected void withTableDataNImage_CheckedChanged(object sender, EventArgs e)
+        {
+            if (withTableDataNImage.Checked == true)
+                withTableData.Checked = false;
         }
     }
 }

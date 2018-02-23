@@ -189,20 +189,24 @@
                             <asp:ListItem Value="Id">Id</asp:ListItem>
                             <asp:ListItem Value="Name">Name</asp:ListItem>
                             <asp:ListItem Value="Roll">Roll</asp:ListItem>
+                            <asp:ListItem Value="Class">Class</asp:ListItem>
                             <asp:ListItem Value="Roll, Name">Roll, Name</asp:ListItem>
+                            <asp:ListItem Value="Class, Roll">Class, Roll</asp:ListItem>
+                            <asp:ListItem Value="Shift, Class, Roll">Shift, Class, Roll</asp:ListItem>
                             <asp:ListItem Value="Department">Department</asp:ListItem>
                             <asp:ListItem Value="Gender">Gender</asp:ListItem>
                             <asp:ListItem Value="Created_By">Created By</asp:ListItem>
                             <asp:ListItem Value="Updated_By">Updated By</asp:ListItem>
                             <asp:ListItem Value="Created_Date">Created Date</asp:ListItem>
                             <asp:ListItem Value="Updated_Date">Updated Date</asp:ListItem>
-                        </asp:DropDownList>
+                        </asp:DropDownList>	
                     </td>
                 </tr>
                 <tr>
                     <td>Show Data</td>
                     <td>
-                        <asp:CheckBox ID="withTableData" runat="server" Text="Show With Data" Font-Bold="true" ForeColor="Red" />
+                        <asp:CheckBox ID="withTableData" AutoPostBack="true" OnCheckedChanged="withTableData_CheckedChanged" runat="server" Text="Show With Data" Font-Bold="true" ForeColor="Red" />
+                        <asp:CheckBox ID="withTableDataNImage" AutoPostBack="true" OnCheckedChanged="withTableDataNImage_CheckedChanged" runat="server" Text="Show With Data & Image" Font-Bold="true" ForeColor="Red" />
                     </td>
                 </tr>
                 <tr>
@@ -232,11 +236,10 @@
                       <asp:HyperLinkField DataNavigateUrlFields="ID" DataNavigateUrlFormatString="/showDetails.aspx?id={0}" DataTextFormatString="{0}" HeaderText="View" Text="View" />
                     <asp:HyperLinkField DataNavigateUrlFields="ID" DataNavigateUrlFormatString="/informationPage.aspx?id={0}" DataTextField="" DataTextFormatString="{0}" HeaderText="Edit" Text="Edit"/>
                     <asp:HyperLinkField DataNavigateUrlFields="ID" DataNavigateUrlFormatString="/informationPage.aspx?deleteID={0}" DataTextField="" DataTextFormatString="{0}" HeaderText="Delete" Text="Delete"/>
-                  
-                      <asp:ImageField DataImageUrlField="ID" DataImageUrlFormatString="http://salahuddinahmedhighschool.com/student_images/{0}.jpg" HeaderText="Image">
+                    
+                    <asp:ImageField DataImageUrlField="ID" DataImageUrlFormatString="http://salahuddinahmedhighschool.com/student_images/{0}.jpg" HeaderText="Image" DataAlternateTextField="ID" DataAlternateTextFormatString="N/A">
                           <ControlStyle Height="70px" />
                       </asp:ImageField>
-                  
                 </Columns>
 
             </asp:GridView>
