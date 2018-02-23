@@ -72,6 +72,24 @@ namespace informationManagement
                     bloodGroupCount.DataBind();
                     conn.Close();
 
+                    insert = "select Present_Status,count(Present_Status) as EntryCount from Information where Is_Deleted = 0 group by rollup(Present_Status)";
+                    conn = new SqlConnection(Information.connectionstring);
+                    cmd = new SqlCommand(insert, conn);
+                    conn.Open();
+
+                    presentstatus.DataSource = cmd.ExecuteReader();
+                    presentstatus.DataBind();
+                    conn.Close();
+
+                    insert = "select (Case When Is_Verified = 1 then 'Verified' Else 'Not Verified' End) As 'Is_Verified', count(Is_Verified) as EntryCount from Information where Is_Deleted = 0 group by Is_Verified";
+                    conn = new SqlConnection(Information.connectionstring);
+                    cmd = new SqlCommand(insert, conn);
+                    conn.Open();
+
+                    varified.DataSource = cmd.ExecuteReader();
+                    varified.DataBind();
+                    conn.Close();
+
                     ///per blood report summary
                     insert = "SELECT top 1"
                     + "(SELECT COUNT(id) FROM information WHERE blood_group != 'N/A' and Blood_Group_Checked = 0) as 'Outside',"
