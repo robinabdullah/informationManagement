@@ -39,6 +39,14 @@
         <h2>Blood Report Summary</h2>
         <asp:GridView ID="bloodGroupSummary" runat="server"></asp:GridView>
     </div>
+         <div style="display:inline-table;margin-right:30px">
+        <h2>Present_Status</h2>
+        <asp:GridView ID="presentstatus" runat="server"></asp:GridView>
+    </div>
+         <div style="display:inline-table;margin-right:30px">
+        <h2>Is_Verified</h2>
+        <asp:GridView ID="varified" runat="server"></asp:GridView>
+    </div>
     </form>
 </body>
 </html>
