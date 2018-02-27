@@ -9,12 +9,16 @@
         .auto-style1 {
             height: 51px;
         }
+        #Image1{
+            float: right;
+        }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
     <div>
         <asp:HiddenField ID="id" runat="server" />
+                  <asp:Image ID="Image1" runat="server" AlternateText="Image"  Height="150px"/>
     <table>
         <tr> <td>  <asp:Label ID="username" runat="server" Font-Bold="True" Font-Size="Larger" ></asp:Label>  </td>
             <td>
@@ -33,6 +37,7 @@
                <asp:TextBox ID="name" runat="server"></asp:TextBox>
 
            </td>
+              
 
         </tr>
           <tr>

@@ -33,6 +33,7 @@ namespace informationManagement
             //edit
             if (Request.QueryString["id"] != null && Session["Role"].ToString() == "admin")//edit link
             {
+                Image1.ImageUrl = "student_images/" + Request.QueryString["id"] + ".jpg";
                 save.Visible = false;
                 save.Enabled = false;
                 update.Enabled = true;
